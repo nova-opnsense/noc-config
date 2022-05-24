@@ -1,0 +1,19 @@
+<model>
+    <mount>//OPNsense/nocconfig</mount>
+    <description>
+        NOC configuration
+    </description>
+    <items>
+        <!-- container -->
+        <ezmesh>
+            <!-- fields -->
+            <SSID type="TextField">
+                <default>NovaIntechs</default>
+                <Required>Y</Required>
+            </SSID>
+            <Password type="TextField">
+                <Required>Y</Required>
+            </Password>
+        </ezmesh>
+    </items>
+</model>

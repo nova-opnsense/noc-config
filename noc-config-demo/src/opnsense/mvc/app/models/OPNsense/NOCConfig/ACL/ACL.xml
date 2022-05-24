@@ -1,0 +1,9 @@
+<acl>
+    <page-user-nocconfig>
+        <name>System: NOC Config</name>
+        <patterns>
+            <pattern>ui/nocconfig/*</pattern>
+            <pattern>api/nocconfig/*</pattern>
+        </patterns>
+    </page-user-nocconfig>
+</acl>
