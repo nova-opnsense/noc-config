@@ -7,6 +7,10 @@
         <!-- container -->
         <ezmesh>
             <!-- fields -->
+            <Enabled type="BooleanField">
+                <default>1</default>
+                <Required>Y</Required>
+            </Enabled>
             <SSID type="TextField">
                 <default>NovaIntechs</default>
                 <Required>Y</Required>
