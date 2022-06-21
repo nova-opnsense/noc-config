@@ -1,6 +1,6 @@
 #!/usr/local/bin/python3
 
-"""
+'''
     Copyright (c) 2015-2019 Ad Schellevis <ad@opnsense.org>
     All rights reserved.
 
@@ -28,14 +28,19 @@
     --------------------------------------------------------------------------------------
 
     perform some tests for the nocconfig application
-"""
+'''
 import os
 import json
 from configparser import ConfigParser
+from paho.mqtt import client as mqtt_client
 
-ezmesh_config = '/usr/local/etc/nocconfig/ezmesh.conf'
 
 result = {}
+ezmSSID = ''
+ezmPassword = ''
+
+# get ezmesh configurations
+ezmesh_config = '/usr/local/etc/nocconfig/ezmesh.conf'
 if os.path.exists(ezmesh_config):
     cnf = ConfigParser()
     cnf.read(ezmesh_config)
@@ -44,18 +49,77 @@ if os.path.exists(ezmesh_config):
             ezmSSID = cnf.get('ezmesh', 'SSID')
             ezmPassword = cnf.get('ezmesh', 'Password')
 
-            result['message'] = f'EzMesh ok! SSID={ezmSSID}, password={ezmPassword}'
             result['SSID'] = ezmSSID
             result['Password'] = ezmPassword
 
         except Exception as error:
             result['message'] = 'Err[0]: %s' % error
+            return
     else:
         # empty config
         result['message'] = 'Err[1]: empty configuration'
+        return
 else:
     # no config
     result['message'] = 'Err[2]: no configuration file found'
+    return
 
 
 print(json.dumps(result))
+
+
+mqttHost = ''
+mqttPort = ''
+mqttUsername = ''
+mqttPassword = ''
+mqttTls = ''
+mqttClientId = 'nova_mqtt_client'
+mqttTopic = 'test/topic'
+
+# get mqtt configurations
+mqtt_config = '/usr/local/etc/nocconfig/mqtt.conf'
+if os.path.exists(mqtt_config):
+    cnf = ConfigParser()
+    cnf.read(mqtt_config)
+    if cnf.has_section('mqtt'):
+        try:
+            mqttHost = cnf.get('mqtt', 'host')
+            mqttPort = cnf.get('mqtt', 'port')
+            mqttUsername = cnf.get('mqtt', 'username')
+            mqttPassword = cnf.get('mqtt', 'password')
+            mqttTls = cnf.get('mqtt', 'tls')
+
+        except Exception as error:
+            result['message'] = 'Err[0]: %s' % error
+            return
+    else:
+        # empty config
+        result['message'] = 'Err[1]: empty configuration'
+        return
+else:
+    # no config
+    result['message'] = 'Err[2]: no configuration file found'
+    return
+
+
+print(f'mqttHost = {mqttHost}')
+print(f'mqttPort = {mqttPort}')
+print(f'mqttUsername = {mqttUsername}')
+print(f'mqttPassword = {mqttPassword}')
+
+
+# connect to mqtt broker
+def on_connect(client, userdata, flags, rc):
+    if rc == 0:
+        print('Connected to MQTT Broker!')
+        msg = '{"hello": "world"}'
+        re = client.publish(mqttTopic, msg)
+        print(f'Published to {mqttTopic}, return code {re}')
+    else:
+        print('Failed to connect, return code %d\n', rc)
+
+
+client = mqtt_client.Client(mqttClientId)
+client.username_pw_set(mqttUsername, mqttPassword)
+client.on_connect = on_connect
+client.connect(mqttHost, mqttPort)
