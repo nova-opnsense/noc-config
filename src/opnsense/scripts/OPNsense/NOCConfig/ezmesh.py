@@ -120,6 +120,7 @@ def on_connect(client, userdata, flags, rc):
         sys.exit()
     else:
         print('Failed to connect, return code %d\n', rc)
+        sys.exit()
 
 
 client = mqtt_client.Client(mqttClientId)
