@@ -34,7 +34,7 @@ import json
 import sys
 import time
 from configparser import ConfigParser
-from paho.mqtt import client as mqtt_client
+from paho.mqtt import client as mqtt
 
 
 result = {}
