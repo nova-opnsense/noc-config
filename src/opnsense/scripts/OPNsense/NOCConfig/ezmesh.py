@@ -111,23 +111,48 @@ print(f'mqttPassword = {mqttPassword}')
 
 
 # connect to mqtt broker
+# def on_connect(client, userdata, flags, rc):
+#     if rc == 0:
+#         print('Connected to MQTT Broker!')
+#         msg = '{"hello": "world"}'
+#         re = client.publish(mqttTopic, msg)
+#         print(f'Published to {mqttTopic}, return code {re}')
+#         sys.exit()
+#     else:
+#         print('Failed to connect, return code %d\n', rc)
+#         sys.exit()
+
+
+
+# client = mqtt_client.Client(mqttClientId)
+# client.username_pw_set(mqttUsername, mqttPassword)
+# client.on_connect = on_connect
+# client.connect(mqttHost, mqttPort)
+# client.loop_start()
+
+
 def on_connect(client, userdata, flags, rc):
-    if rc == 0:
-        print('Connected to MQTT Broker!')
-        msg = '{"hello": "world"}'
-        re = client.publish(mqttTopic, msg)
-        print(f'Published to {mqttTopic}, return code {re}')
-        sys.exit()
+    if rc==0:
+        client.connected_flag=True #set flag
+        print("connected OK")
     else:
-        print('Failed to connect, return code %d\n', rc)
-        sys.exit()
+        print("Bad connection Returned code=",rc)
 
-
-client = mqtt_client.Client(mqttClientId)
-client.username_pw_set(mqttUsername, mqttPassword)
-client.on_connect = on_connect
-client.connect(mqttHost, mqttPort)
+mqtt.Client.connected_flag=False#create flag in class
+broker="127.0.0.1"
+client = mqtt.Client("python1")             #create new instance 
+client.on_connect=on_connect  #bind call back function
 client.loop_start()
-
-while(True):
+print("Connecting to broker ",broker)
+client.connect(broker)      #connect to broker
+while not client.connected_flag: #wait in loop
+    print("In wait loop")
     time.sleep(1)
+print("in Main Loop")
+client.publish("test/topic","hehe")
+client.loop_stop()    #Stop loop 
+client.disconnect() # disconnect
+
+
+# while(True):
+#     time.sleep(1)
