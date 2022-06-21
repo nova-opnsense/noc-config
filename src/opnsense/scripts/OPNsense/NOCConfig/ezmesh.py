@@ -126,6 +126,7 @@ client = mqtt_client.Client(mqttClientId)
 client.username_pw_set(mqttUsername, mqttPassword)
 client.on_connect = on_connect
 client.connect(mqttHost, mqttPort)
+client.loop_start()
 
 while(True):
     time.sleep(1)
