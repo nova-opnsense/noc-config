@@ -30,7 +30,7 @@
 
 namespace OPNsense\NOCConfig\Api;
 
-use OPNsense\Base\ApiMutableModelControllerBase;
+use OPNsense\Base\ApiControllerBase;
 use OPNsense\NOCConfig\Ezmesh;
 use OPNsense\Core\Config;
 
@@ -38,11 +38,8 @@ use OPNsense\Core\Config;
  * Class EzmeshController Handles Ezmesh related API actions for the NOCConfig module
  * @package OPNsense\NOCConfig
  */
-class EzmeshController extends ApiMutableModelControllerBase
+class EzmeshController extends ApiControllerBase
 {
-    protected static $internalModelName = 'ezmesh';
-    protected static $internalModelClass = 'OPNsense\NOCConfig\Ezmesh';
-
     /**
      * retrieve ezmesh settings
      * @return array ezmesh settings

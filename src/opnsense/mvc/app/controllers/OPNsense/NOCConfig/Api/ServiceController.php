@@ -30,14 +30,14 @@
 
 namespace OPNsense\NOCConfig\Api;
 
-use OPNsense\Base\ApiMutableServiceControllerBase;
+use OPNsense\Base\ApiControllerBase;
 use OPNsense\Core\Backend;
 
 /**
  * Class ServiceController
  * @package OPNsense\Cron
  */
-class ServiceController extends ApiMutableServiceControllerBase
+class ServiceController extends ApiControllerBase
 {
     /**
      * reconfigure
