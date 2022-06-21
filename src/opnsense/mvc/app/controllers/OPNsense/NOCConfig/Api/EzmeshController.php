@@ -69,7 +69,7 @@ class EzmeshController extends ApiControllerBase
         if ($this->request->isPost()) {
             // load model and update with provided data
             $mdlEzmesh = new Ezmesh();
-            $mdlEzmesh->setNodes($this->request->getPost("ezmesh"));
+            $mdlEzmesh->setNodes($this->request->getPost("nocconfig"));
 
             // perform validation
             $valMsgs = $mdlEzmesh->performValidation();
