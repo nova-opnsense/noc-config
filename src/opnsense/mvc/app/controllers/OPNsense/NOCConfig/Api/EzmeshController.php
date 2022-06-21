@@ -52,7 +52,7 @@ class EzmeshController extends ApiControllerBase
         $result = array();
         if ($this->request->isGet()) {
             $mdlEzmesh = new Ezmesh();
-            $result['ezmesh'] = $mdlEzmesh->getNodes();
+            $result['nocconfig'] = $mdlEzmesh->getNodes();
         }
         return $result;
     }
@@ -77,7 +77,7 @@ class EzmeshController extends ApiControllerBase
                 if (!array_key_exists("validations", $result)) {
                     $result["validations"] = array();
                 }
-                $result["validations"]["ezmesh." . $msg->getField()] = $msg->getMessage();
+                $result["validations"]["nocconfig." . $msg->getField()] = $msg->getMessage();
             }
 
             // serialize model to config and save
