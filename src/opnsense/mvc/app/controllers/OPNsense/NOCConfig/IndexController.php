@@ -40,7 +40,5 @@ class IndexController extends \OPNsense\Base\IndexController
     {
         // pick the template to serve to our users.
         $this->view->pick('OPNsense/NOCConfig/index');
-        // fetch form data "ezmesh" in
-        $this->view->ezmeshForm = $this->getForm("ezmesh");
     }
 }

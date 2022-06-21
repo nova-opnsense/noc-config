@@ -30,17 +30,17 @@
 
 namespace OPNsense\NOCConfig\Api;
 
-use OPNsense\Base\ApiControllerBase;
+use OPNsense\Base\ApiMutableServiceControllerBase;
 use OPNsense\Core\Backend;
 
 /**
  * Class ServiceController
  * @package OPNsense\Cron
  */
-class ServiceController extends ApiControllerBase
+class ServiceController extends ApiMutableServiceControllerBase
 {
     /**
-     * reconfigure NOCConfig
+     * reconfigure
      */
     public function reloadAction()
     {
@@ -56,7 +56,7 @@ class ServiceController extends ApiControllerBase
     }
 
     /**
-     * apply NOCConfig
+     * apply
      */
     public function applyAction()
     {

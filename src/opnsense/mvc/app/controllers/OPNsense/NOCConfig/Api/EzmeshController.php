@@ -30,18 +30,21 @@
 
 namespace OPNsense\NOCConfig\Api;
 
-use OPNsense\Base\ApiControllerBase;
-use OPNsense\NOCConfig\NOCConfig;
+use OPNsense\Base\ApiMutableModelControllerBase;
+use OPNsense\NOCConfig\Ezmesh;
 use OPNsense\Core\Config;
 
 /**
  * Class EzmeshController Handles Ezmesh related API actions for the NOCConfig module
  * @package OPNsense\NOCConfig
  */
-class EzmeshController extends ApiControllerBase
+class EzmeshController extends ApiMutableModelControllerBase
 {
+    protected static $internalModelName = 'ezmesh';
+    protected static $internalModelClass = 'OPNsense\NOCConfig\Ezmesh';
+
     /**
-     * retrieve NOCConfig ezmesh settings
+     * retrieve ezmesh settings
      * @return array ezmesh settings
      * @throws \OPNsense\Base\ModelException
      * @throws \ReflectionException
@@ -51,14 +54,14 @@ class EzmeshController extends ApiControllerBase
         // define list of configurable settings
         $result = array();
         if ($this->request->isGet()) {
-            $mdlNOCConfig = new NOCConfig();
-            $result['nocconfig'] = $mdlNOCConfig->getNodes();
+            $mdlEzmesh = new Ezmesh();
+            $result['ezmesh'] = $mdlEzmesh->getNodes();
         }
         return $result;
     }
 
     /**
-     * update NOCConfig settings
+     * update ezmesh settings
      * @return array status
      * @throws \OPNsense\Base\ModelException
      * @throws \ReflectionException
@@ -68,21 +71,21 @@ class EzmeshController extends ApiControllerBase
         $result = array("result" => "failed");
         if ($this->request->isPost()) {
             // load model and update with provided data
-            $mdlNOCConfig = new NOCConfig();
-            $mdlNOCConfig->setNodes($this->request->getPost("nocconfig"));
+            $mdlEzmesh = new Ezmesh();
+            $mdlEzmesh->setNodes($this->request->getPost("ezmesh"));
 
             // perform validation
-            $valMsgs = $mdlNOCConfig->performValidation();
+            $valMsgs = $mdlEzmesh->performValidation();
             foreach ($valMsgs as $field => $msg) {
                 if (!array_key_exists("validations", $result)) {
                     $result["validations"] = array();
                 }
-                $result["validations"]["nocconfig." . $msg->getField()] = $msg->getMessage();
+                $result["validations"]["ezmesh." . $msg->getField()] = $msg->getMessage();
             }
 
             // serialize model to config and save
             if ($valMsgs->count() == 0) {
-                $mdlNOCConfig->serializeToConfig();
+                $mdlEzmesh->serializeToConfig();
                 Config::getInstance()->save();
                 $result["result"] = "saved";
             }

@@ -1,7 +1,7 @@
 <model>
-    <mount>//OPNsense/nocconfig</mount>
+    <mount>//OPNsense/nocconfig/ezmesh</mount>
     <description>
-        NOC configuration
+        Ezmesh configuration
     </description>
     <items>
         <!-- container -->

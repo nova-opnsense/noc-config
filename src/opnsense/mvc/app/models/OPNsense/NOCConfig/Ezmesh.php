@@ -32,6 +32,6 @@ namespace OPNsense\NOCConfig;
 
 use OPNsense\Base\BaseModel;
 
-class NOCConfig extends BaseModel
+class Ezmesh extends BaseModel
 {
 }

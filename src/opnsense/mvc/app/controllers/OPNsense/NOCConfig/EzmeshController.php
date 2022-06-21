@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright (C) 2015-2019 Deciso B.V.
+ *    Copyright (C) 2015 Deciso B.V.
  *
  *    All rights reserved.
  *
@@ -28,16 +28,19 @@
  *
  */
 
-namespace OPNsense\NOCConfig\Api;
-
-use OPNsense\Base\ApiMutableModelControllerBase;
+namespace OPNsense\NOCConfig;
 
 /**
- * a simplified Ezmesh controller for our NOCConfig app, uses our ApiMutableModelControllerBase type
+ * Class EzmeshController
  * @package OPNsense\NOCConfig
  */
-class SimplifiedEzmeshController extends ApiMutableModelControllerBase
+class EzmeshController extends \OPNsense\Base\IndexController
 {
-    protected static $internalModelName = 'nocconfig';
-    protected static $internalModelClass = 'OPNsense\NOCConfig\NOCConfig';
+    public function indexAction()
+    {
+        // pick the template to serve to our users.
+        $this->view->pick('OPNsense/NOCConfig/ezmesh');
+        // fetch form data "ezmesh" in
+        $this->view->ezmeshForm = $this->getForm("ezmesh");
+    }
 }

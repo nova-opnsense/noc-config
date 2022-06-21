@@ -1,5 +1,6 @@
 <menu>
-    <NOCConfig order="10" VisibleName="NOC Config" cssClass="fa fa-cubes">
-        <EZmesh order="10" url="/ui/nocconfig"/>
+    <NOCConfig order="11" VisibleName="NOC Config" cssClass="fa fa-cubes">
+        <Status order="0" url="/ui/nocconfig"/>
+        <EZmesh order="10" url="/ui/nocconfig/ezmesh" cssClass="fa fa-cubes"/>
     </NOCConfig>
 </menu>

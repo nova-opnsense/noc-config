@@ -33,12 +33,12 @@ import os
 import json
 from configparser import ConfigParser
 
-hello_world_config = '/usr/local/etc/nocconfig/nocconfig.conf'
+ezmesh_config = '/usr/local/etc/nocconfig/ezmesh.conf'
 
 result = {}
-if os.path.exists(hello_world_config):
+if os.path.exists(ezmesh_config):
     cnf = ConfigParser()
-    cnf.read(hello_world_config)
+    cnf.read(ezmesh_config)
     if cnf.has_section('ezmesh'):
         try:
             ezmSSID = cnf.get('ezmesh', 'SSID')
