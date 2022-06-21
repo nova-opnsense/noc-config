@@ -116,6 +116,7 @@ def on_connect(client, userdata, flags, rc):
         msg = '{"hello": "world"}'
         re = client.publish(mqttTopic, msg)
         print(f'Published to {mqttTopic}, return code {re}')
+        sys.exit()
     else:
         print('Failed to connect, return code %d\n', rc)
 
@@ -124,3 +125,6 @@ client = mqtt_client.Client(mqttClientId)
 client.username_pw_set(mqttUsername, mqttPassword)
 client.on_connect = on_connect
 client.connect(mqttHost, mqttPort)
+
+while(True):
+    sleep(1)
