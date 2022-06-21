@@ -44,7 +44,7 @@ if os.path.exists(ezmesh_config):
             ezmSSID = cnf.get('ezmesh', 'SSID')
             ezmPassword = cnf.get('ezmesh', 'Password')
 
-            result['message'] = 'EzMesh ok! 💩'
+            result['message'] = f'EzMesh ok! SSID={ezmSSID}, password={ezmPassword}'
             result['SSID'] = ezmSSID
             result['Password'] = ezmPassword
 
