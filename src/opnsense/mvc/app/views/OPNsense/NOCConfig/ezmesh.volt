@@ -29,7 +29,10 @@ POSSIBILITY OF SUCH DAMAGE.
 <script>
     $( document ).ready(function() {
         var data_get_map = {'frm_ezmesh':"/api/nocconfig/ezmesh/get"};
+        console.log(data_get_map);
+
         mapDataToFormUI(data_get_map).done(function(data){
+            console.log(data);
             // place actions to run after load, for example update form styles.
         });
 
