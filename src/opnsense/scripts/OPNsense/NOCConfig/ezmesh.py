@@ -32,6 +32,7 @@
 import os
 import json
 import sys
+import time
 from configparser import ConfigParser
 from paho.mqtt import client as mqtt_client
 
@@ -127,4 +128,4 @@ client.on_connect = on_connect
 client.connect(mqttHost, mqttPort)
 
 while(True):
-    sleep(1)
+    time.sleep(1)
