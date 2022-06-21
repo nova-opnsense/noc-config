@@ -85,7 +85,7 @@ if os.path.exists(mqtt_config):
     if cnf.has_section('mqtt'):
         try:
             mqttHost = cnf.get('mqtt', 'host')
-            mqttPort = cnf.get('mqtt', 'port')
+            # mqttPort = cnf.get('mqtt', 'port')
             mqttUsername = cnf.get('mqtt', 'username')
             mqttPassword = cnf.get('mqtt', 'password')
             mqttTls = cnf.get('mqtt', 'tls')
