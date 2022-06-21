@@ -31,6 +31,7 @@
 '''
 import os
 import json
+import sys
 from configparser import ConfigParser
 from paho.mqtt import client as mqtt_client
 
@@ -54,15 +55,15 @@ if os.path.exists(ezmesh_config):
 
         except Exception as error:
             result['message'] = 'Err[0]: %s' % error
-            return
+            sys.exit()
     else:
         # empty config
         result['message'] = 'Err[1]: empty configuration'
-        return
+        sys.exit()
 else:
     # no config
     result['message'] = 'Err[2]: no configuration file found'
-    return
+    sys.exit()
 
 
 print(json.dumps(result))
@@ -91,15 +92,15 @@ if os.path.exists(mqtt_config):
 
         except Exception as error:
             result['message'] = 'Err[0]: %s' % error
-            return
+            sys.exit()
     else:
         # empty config
         result['message'] = 'Err[1]: empty configuration'
-        return
+        sys.exit()
 else:
     # no config
     result['message'] = 'Err[2]: no configuration file found'
-    return
+    sys.exit()
 
 
 print(f'mqttHost = {mqttHost}')
