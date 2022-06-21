@@ -70,7 +70,7 @@ print(json.dumps(result))
 
 
 mqttHost = ''
-mqttPort = ''
+mqttPort = 1883
 mqttUsername = ''
 mqttPassword = ''
 mqttTls = ''
