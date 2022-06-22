@@ -1,0 +1,28 @@
+<model>
+    <mount>//OPNsense/Segment</mount>
+    <description>
+        Ezmesh Segments Status and Configuration
+    </description>
+    <items>
+        <segments>
+            <segment type="ArrayField">
+                <enabled type="BooleanField">
+                    <default>1</default>
+                    <Required>Y</Required>
+                </enabled>
+                <hubId type="TextField">
+                    <Required>Y</Required>
+                </hubId>
+                <name type="TextField">
+                    <Required>Y</Required>
+                </name>
+                <lastUpdate type="TextField">
+                    <Required>Y</Required>
+                </lastUpdate>
+                <status type="TextField">
+                    <Required>Y</Required>
+                </status>
+            </segment>
+        </segments>
+    </items>
+</model>
