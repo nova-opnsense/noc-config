@@ -47,10 +47,13 @@ POSSIBILITY OF SUCH DAMAGE.
         });
 
         $("#applyAct").click(function(){
-            $("#responseMsg").removeClass("hidden");
             ajaxCall(url="/api/nocconfig/service/apply", sendData={},callback=function(data,status) {
                 // action to run after reload
+                $("#responseMsg").removeClass("hidden");
                 $("#responseMsg").html(data['message']);
+                setTimeout(() => {
+                    $("#responseMsg").addClass("hidden");
+                }, 5000);
             });
         });
 
