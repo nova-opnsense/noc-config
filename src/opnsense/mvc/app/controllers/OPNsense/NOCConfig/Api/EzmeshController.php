@@ -84,7 +84,8 @@ class EzmeshController extends ApiControllerBase
             if ($valMsgs->count() == 0) {
                 $mdlEzmesh->serializeToConfig();
                 Config::getInstance()->save();
-                $result["result"] = "saved";
+                $result["result"] = "saved!!!";
+                $result["data"] = $this->request->getPost("nocconfig");
             }
         }
         return $result;

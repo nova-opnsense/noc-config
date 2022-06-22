@@ -4,6 +4,7 @@
         "mqtt",
         "nocconfig",
         "opnsense",
+        "paho",
         "SSID"
     ]
 }
