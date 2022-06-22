@@ -60,11 +60,13 @@ def getd(api):
 def setd(api, data):
 
     url = f'{api_url}/{api}'
+    headers = {'content-type': 'application/json'}
 
     # request data
     r = requests.post(url,
                     verify=False,
-                    json=data,
+                    data=data,
+                    headers=headers,
                     auth=(api_key, api_secret))
     
     if r.status_code == 200:
