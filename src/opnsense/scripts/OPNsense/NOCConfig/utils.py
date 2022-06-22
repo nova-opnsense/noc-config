@@ -27,28 +27,35 @@
 
     --------------------------------------------------------------------------------------
 
-    perform some tests for the nocconfig application
+    utility functions helper
 '''
 
-import json
-from utils import readConfig
+import random
+import string
+import os
+from configparser import ConfigParser
 
 
-ezmConf = readConfig('/usr/local/etc/nocconfig/ezmesh.conf', 'ezmesh')
-ezm_ssid = ezmConf.get('ssid')
-ezm_pass = ezmConf.get('password')
+def str2bool(str):
+    return str.lower() in ['true', '1', 't', 'y', 'yes']
 
 
-result = {}
+def randId(n: int):
+    return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(n))
 
 
-def main():
-    result['message'] = 'Hello, world! I am here. 💕💖💖💖💕'
-    result['ssid'] = ezm_ssid
-    result['password'] = ezm_pass
-
-    print(json.dumps(result))
-
-
-if __name__ == '__main__':
-    main()
+def readConfig(config_file, section):
+    if os.path.exists(config_file):
+        cnf = ConfigParser()
+        cnf.read(config_file)
+        if cnf.has_section(section):
+            try:
+                return dict(cnf.items(section))
+            except Exception:
+                return None
+        else:
+            # empty config
+            return None
+    else:
+        # no config
+        return None

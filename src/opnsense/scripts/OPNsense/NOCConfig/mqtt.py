@@ -29,24 +29,52 @@
 
     perform some tests for the nocconfig application
 '''
-
 import json
-from utils import readConfig
+import time
+from paho.mqtt import client as mqtt
+from utils import str2bool, randId, readConfig
 
 
-ezmConf = readConfig('/usr/local/etc/nocconfig/ezmesh.conf', 'ezmesh')
-ezm_ssid = ezmConf.get('ssid')
-ezm_pass = ezmConf.get('password')
+mqttConf = readConfig('/usr/local/etc/nocconfig/mqtt.conf', 'mqtt')
+mqtt_host = mqttConf.get('host')
+mqtt_port = int(mqttConf.get('port'))
+mqtt_username = mqttConf.get('username')
+mqtt_password = mqttConf.get('password')
+mqtt_tls = str2bool(mqttConf.get('tls'))
+mqtt_clientid = f'{mqttConf.get("clientid")}-{randId(6)}'
 
+mqttTopicTest = 'test/topic'
+mqttPayloadTest = '{"message": "hello world!"}'
 
 result = {}
 
 
-def main():
-    result['message'] = 'Hello, world! I am here. 💕💖💖💖💕'
-    result['ssid'] = ezm_ssid
-    result['password'] = ezm_pass
+def mqttSendMessage():
+    def on_connect(client, userdata, flags, rc):
+        if rc == 0:
+            client.isConnected = True
+            print("Connected!")
+        else:
+            print("Bad connection Returned code=", rc)
 
+    mqtt.Client.isConnected = False
+    client = mqtt.Client(mqtt_clientid)
+    client.username_pw_set(mqtt_username, mqtt_password)
+    client.on_connect = on_connect
+    client.loop_start()
+    print(f"Connecting to {mqtt_host}...", )
+    client.connect(host=mqtt_host, port=mqtt_port)
+    while not client.isConnected:
+        time.sleep(1)
+    client.publish(mqttTopicTest, mqttPayloadTest)
+    client.loop_stop()
+    client.disconnect()
+
+    result['message'] = 'message is published'
+
+
+def main():
+    mqttSendMessage()
     print(json.dumps(result))
 
 

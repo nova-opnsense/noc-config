@@ -1,2 +1,3 @@
 ezmesh.conf:/usr/local/etc/nocconfig/ezmesh.conf
 mqtt.conf:/usr/local/etc/nocconfig/mqtt.conf
+api.conf:/usr/local/etc/nocconfig/api.conf

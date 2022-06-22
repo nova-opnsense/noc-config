@@ -27,26 +27,29 @@
 
     --------------------------------------------------------------------------------------
 
-    nocconfig api
+    opnsense api helper
 '''
 import json
-import sys
 import requests
+import argparse
+from utils import readConfig
 
-# define endpoint and credentials
-api_key='zEbUWb1MnjVj6ZHIg/NevreMg9oU6JRxo84ZowTXgV6nKpINPSxAQN0vnkftVMb74jvW7zFUWOOaPdUA'
-api_secret='W0vVMnqv6HeoZH1Cy38rZCEXx67mZneF7Cc+UyrOQhFIlUHhVkabJosnztubMKMAoNg1O9o3XMs4Jryu'
-api_url = 'https://192.168.3.143/api'
+conf = readConfig('/usr/local/etc/nocconfig/api.conf', 'api')
 
-def getd(api):
+api_key = conf.get('key')
+api_secret = conf.get('secret')
+api_endpoint = conf.get('endpoint')
+api_type = conf.get('type')
 
-    url = f'{api_url}/{api}'
 
-    # request data
+def get(api):
+
+    url = f'{api_endpoint}/{api}'
+
     r = requests.get(url,
-                    verify=False,
-                    auth=(api_key, api_secret))
-    
+                     verify=False,
+                     auth=(api_key, api_secret))
+
     print(f'result: {r}')
 
     if r.status_code == 200:
@@ -57,18 +60,18 @@ def getd(api):
         print('Connection / Authentication issue, response received:')
         print(r.text)
 
-def setd(api, data):
 
-    url = f'{api_url}/{api}'
-    headers = {'content-type': 'application/json'}
+def set(api, data):
 
-    # request data
+    url = f'{api_endpoint}/{api}'
+    headers = {'content-type': api_type}
+
     r = requests.post(url,
-                    verify=False,
-                    data=data,
-                    headers=headers,
-                    auth=(api_key, api_secret))
-    
+                      verify=False,
+                      data=data,
+                      headers=headers,
+                      auth=(api_key, api_secret))
+
     if r.status_code == 200:
         print('Receive status OK')
         response = json.loads(r.text)
@@ -77,25 +80,37 @@ def setd(api, data):
         print('Connection / Authentication issue, response received:')
         print(r.text)
 
+
 def main():
-    args = sys.argv[1:]
 
-    if not args:
-        print('usage: [get/set] [api] [data] ')
-        sys.exit(1)
+    parser = argparse.ArgumentParser(description='OPNsense API client helper')
 
-    if args[0] == 'get':
-        if len(args) < 1:
-            print('usage: get <api>')
-            sys.exit(1)
-        getd(args[1])
-    elif args[0] == 'set':
-        if len(args) < 2:
-            print('usage: set <api> <data>')
-            sys.exit(1)
-        setd(args[1], args[2])
+    parser.add_argument('-m', '--method',
+                        type=str,
+                        default='get',
+                        help='method is `GET` or `SET`, default is `GET`')
+    parser.add_argument('-a', '--api',
+                        type=str,
+                        default='',
+                        help='the API url. for example: `nocconfig/ezmesh/get`')
+    parser.add_argument('-d', '--data',
+                        type=str,
+                        default='',
+                        help='json data for `set` method')
+
+    args = parser.parse_args()
+
+    method = args.method.upper()
+    api = args.api
+    data = args.data
+
+    if method == 'GET':
+        get(api)
+    elif method == 'SET':
+        set(api, data)
     else:
-        print('command not found')
+        parser.print_help()
+
 
 if __name__ == '__main__':
     main()
