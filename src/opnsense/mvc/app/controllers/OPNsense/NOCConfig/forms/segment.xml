@@ -1,27 +1,27 @@
 <form>
     <field>
-        <id>nocconfig.segment.enabled</id>
+        <id>segment.enabled</id>
         <label>Enabled</label>
         <type>checkbox</type>
         <help>Enable this feature</help>
     </field>
     <field>
-        <id>nocconfig.segment.hubId</id>
+        <id>segment.hubId</id>
         <label>hubId</label>
         <type>text</type>
     </field>
     <field>
-        <id>nocconfig.segment.name</id>
+        <id>segment.name</id>
         <label>name</label>
         <type>text</type>
     </field>
     <field>
-        <id>nocconfig.segment.lastUpdate</id>
+        <id>segment.lastUpdate</id>
         <label>lastUpdate</label>
         <type>text</type>
     </field>
     <field>
-        <id>nocconfig.segment.status</id>
+        <id>segment.status</id>
         <label>status</label>
         <type>text</type>
     </field>
