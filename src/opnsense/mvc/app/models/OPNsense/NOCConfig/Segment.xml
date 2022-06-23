@@ -1,5 +1,5 @@
 <model>
-    <mount>//OPNsense/Segment</mount>
+    <mount>//OPNsense/nocconfig/segment</mount>
     <description>
         Ezmesh Segments Status and Configuration
     </description>

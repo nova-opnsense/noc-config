@@ -67,4 +67,4 @@
 </table>
 
 
-{{ partial("layout_partials/base_dialog",['fields':formSegment,'id':'DialogSegment','label':lang._('Edit address')])}}
+{{ partial("layout_partials/base_dialog",['fields':formSegment,'id':'DialogSegment','label':lang._('Edit segment')])}}

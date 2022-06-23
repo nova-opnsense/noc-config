@@ -1,11 +1,14 @@
 {
     "cSpell.words": [
+        "Bootgrid",
         "clientid",
+        "Deciso",
         "Ezmesh",
         "mqtt",
         "nocconfig",
         "opnsense",
         "paho",
+        "rowtoggle",
         "SSID"
     ]
 }
