@@ -1,5 +1,5 @@
 <model>
-    <mount>//OPNsense/nocconfig</mount>
+    <mount>//OPNsense/nocconfig/ezmesh</mount>
     <description>
         Ezmesh configuration
     </description>
@@ -16,6 +16,7 @@
                 <Required>Y</Required>
             </SSID>
             <Password type="TextField">
+                <default>nova</default>
                 <Required>Y</Required>
             </Password>
         </ezmesh>
