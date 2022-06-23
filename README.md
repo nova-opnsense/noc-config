@@ -44,11 +44,15 @@ Test mqtt connection
 mqtt.py
 ```
 
-Test ezmesh api
+Test API
+
+`usage: api.py [-h] [-m METHOD] -a API [-d DATA] [-t CONTENTTYPE]`
+
+Ezmesh API
 
 ```sh
 api.py \
-    -m set \
+    -m post \
     -a nocconfig/ezmesh/set \
     -d '{
             "nocconfig": {
@@ -62,25 +66,29 @@ api.py \
 
 
 api.py \
-    -m get \
     -a nocconfig/ezmesh/get
 ```
 
-Test segment api
+Segment API
 
 ```sh
+# get all segments
 api.py \
-    -m get \
     -a nocconfig/segment/searchItem
 
+# search segment
+api.py \
+    -m post \
+    -a nocconfig/segment/searchItem \
+    -d 'current=1&rowCount=1&searchPhrase=<search phrase>' \
+    -t 'application/x-www-form-urlencoded'
 
 api.py \
-    -m get \
     -a nocconfig/segment/getItem/<uuid>
 
 
 api.py \
-    -m set \
+    -m post \
     -a nocconfig/segment/addItem \
     -d '{
             "segment":{
@@ -91,6 +99,4 @@ api.py \
                 "status":"123"
             }
         }'
-
-
 ```

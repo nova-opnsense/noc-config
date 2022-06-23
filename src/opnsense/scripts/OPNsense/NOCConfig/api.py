@@ -39,7 +39,6 @@ conf = readConfig('/usr/local/etc/nocconfig/api.conf', 'api')
 api_key = conf.get('key')
 api_secret = conf.get('secret')
 api_endpoint = conf.get('endpoint')
-api_type = conf.get('type')
 
 
 def get(api):
@@ -61,10 +60,10 @@ def get(api):
         print(r.text)
 
 
-def set(api, data):
+def post(api, data, contentType):
 
     url = f'{api_endpoint}/{api}'
-    headers = {'content-type': api_type}
+    headers = {'content-type': contentType}
 
     r = requests.post(url,
                       verify=False,
@@ -87,27 +86,31 @@ def main():
 
     parser.add_argument('-m', '--method',
                         type=str,
-                        default='get',
-                        help='method is `GET` or `SET`, default is `GET`')
+                        default='GET',
+                        help='method `GET`/`POST`, default is `GET`')
     parser.add_argument('-a', '--api',
                         type=str,
-                        default='',
-                        help='the API url. for example: `nocconfig/ezmesh/get`')
+                        required=True,
+                        help='API url. for example: `nocconfig/ezmesh/get`')
     parser.add_argument('-d', '--data',
                         type=str,
-                        default='',
-                        help='json data for `set` method')
+                        help='data')
+    parser.add_argument('-t', '--contentType',
+                        type=str,
+                        default='application/json',
+                        help='header content-type: application/json, application/x-www-form-urlencoded, text/plain, text/html')
 
     args = parser.parse_args()
 
     method = args.method.upper()
     api = args.api
     data = args.data
+    contentType = args.contentType
 
     if method == 'GET':
         get(api)
-    elif method == 'SET':
-        set(api, data)
+    elif method == 'POST':
+        post(api, data, contentType)
     else:
         parser.print_help()
 
