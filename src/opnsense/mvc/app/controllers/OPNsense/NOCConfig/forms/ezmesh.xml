@@ -1,19 +1,19 @@
 <form>
     <field>
-        <id>ezmesh.Enabled</id>
+        <id>nocconfig.ezmesh.Enabled</id>
         <label>Enabled</label>
         <type>checkbox</type>
         <help>Enable this feature</help>
     </field>
     <field>
-        <id>ezmesh.SSID</id>
+        <id>nocconfig.ezmesh.SSID</id>
         <label>SSID</label>
         <type>text</type>
         <help><![CDATA[SSID of the wifi mesh]]></help>
         <hint>Enter the Wifi mesh SSID</hint>
     </field>
     <field>
-        <id>ezmesh.Password</id>
+        <id>nocconfig.ezmesh.Password</id>
         <label>Password</label>
         <type>text</type>
         <help><![CDATA[Password of the wifi mesh]]></help>

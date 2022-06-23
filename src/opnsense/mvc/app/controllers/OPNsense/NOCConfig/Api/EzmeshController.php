@@ -69,7 +69,7 @@ class EzmeshController extends ApiControllerBase
         if ($this->request->isPost()) {
             // load model and update with provided data
             $mdlEzmesh = new Ezmesh();
-            $mdlEzmesh->setNodes($this->request->getPost("ezmesh"));
+            $mdlEzmesh->setNodes($this->request->getPost("nocconfig"));
 
             // perform validation
             $valMsgs = $mdlEzmesh->performValidation();
@@ -77,7 +77,7 @@ class EzmeshController extends ApiControllerBase
                 if (!array_key_exists("validations", $result)) {
                     $result["validations"] = array();
                 }
-                $result["validations"][$msg->getField()] = $msg->getMessage();
+                $result["validations"]["nocconfig." . $msg->getField()] = $msg->getMessage();
             }
 
             // serialize model to config and save
@@ -85,7 +85,7 @@ class EzmeshController extends ApiControllerBase
                 $mdlEzmesh->serializeToConfig();
                 Config::getInstance()->save();
                 $result["result"] = "saved!!!";
-                $result["data"] = $this->request->getPost("ezmesh");
+                $result["data"] = $this->request->getPost("nocconfig");
             }
         }
         return $result;
