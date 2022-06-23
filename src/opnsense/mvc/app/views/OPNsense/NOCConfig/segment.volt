@@ -46,7 +46,7 @@
         <tr>
             <th data-column-id="uuid" data-type="string" data-identifier="true"  data-visible="false">{{ lang._('ID') }}</th>
             <th data-column-id="enabled" data-width="6em" data-type="string" data-formatter="rowtoggle">{{ lang._('Enabled') }}</th>
-            <th data-column-id="hubId" data-type="string">{{ lang._('HubID') }}</th>
+            <th data-column-id="hubId" data-type="string">{{ lang._('Hub ID') }}</th>
             <th data-column-id="name" data-type="string">{{ lang._('Name') }}</th>
             <th data-column-id="lastUpdate" data-type="string">{{ lang._('Last Update') }}</th>
             <th data-column-id="status" data-type="string">{{ lang._('Status') }}</th>

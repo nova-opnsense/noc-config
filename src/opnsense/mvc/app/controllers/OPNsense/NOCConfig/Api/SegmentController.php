@@ -43,7 +43,7 @@ class SegmentController extends ApiMutableModelControllerBase
 
     public function searchItemAction()
     {
-        return $this->searchBase("segments.segment", array('enabled', 'name'), "name");
+        return $this->searchBase("segments.segment", array('enabled','hubId','name','lastUpdate','status'), "name");
     }
 
     public function setItemAction($uuid)
