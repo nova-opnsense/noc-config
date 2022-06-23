@@ -41,7 +41,7 @@ ezmesh.py
 Test mqtt connection
 
 ```sh
-mqtt.py
+mqtt-test.py
 ```
 
 Test API
