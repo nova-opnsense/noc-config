@@ -43,31 +43,31 @@ class SegmentController extends ApiMutableModelControllerBase
 
     public function searchItemAction()
     {
-        return $this->searchBase("nocconfig.segments.segment", array('enabled', 'name'), "name");
+        return $this->searchBase("segments.segment", array('enabled', 'name'), "name");
     }
 
     public function setItemAction($uuid)
     {
-        return $this->setBase("nocconfig.segment", "nocconfig.segments.segment", $uuid);
+        return $this->setBase("nocconfig.segment", "segments.segment", $uuid);
     }
 
     public function addItemAction()
     {
-        return $this->addBase("nocconfig.segment", "nocconfig.segments.segment");
+        return $this->addBase("nocconfig.segment", "segments.segment");
     }
 
     public function getItemAction($uuid = null)
     {
-        return $this->getBase("nocconfig.segment", "nocconfig.segments.segment", $uuid);
+        return $this->getBase("nocconfig.segment", "segments.segment", $uuid);
     }
 
     public function delItemAction($uuid)
     {
-        return $this->delBase("nocconfig.segments.segment", $uuid);
+        return $this->delBase("segments.segment", $uuid);
     }
 
     public function toggleItemAction($uuid, $enabled = null)
     {
-        return $this->toggleBase("nocconfig.segments.segment", $uuid, $enabled);
+        return $this->toggleBase("segments.segment", $uuid, $enabled);
     }
 }
