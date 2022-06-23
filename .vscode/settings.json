@@ -6,11 +6,13 @@
         "Ezmesh",
         "Intechs",
         "mqtt",
+        "mqttc",
         "nocconfig",
         "Nova",
         "opnsense",
         "paho",
         "rowtoggle",
-        "SSID"
+        "SSID",
+        "userdata"
     ]
 }

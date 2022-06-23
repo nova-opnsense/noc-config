@@ -1,6 +1,8 @@
 # noc-config
 
-nova noc-config
+A plugin for OPNsense
+
+---
 
 ## Development guidelines
 
@@ -100,3 +102,11 @@ api.py \
             }
         }'
 ```
+
+---
+
+# About
+
+hai.nt <hai.nt@novaintechs.com>
+
+---
