@@ -7,22 +7,22 @@
     </field>
     <field>
         <id>segment.hubId</id>
-        <label>hubId</label>
+        <label>Hub ID</label>
         <type>text</type>
     </field>
     <field>
         <id>segment.name</id>
-        <label>name</label>
+        <label>Name</label>
         <type>text</type>
     </field>
     <field>
         <id>segment.lastUpdate</id>
-        <label>lastUpdate</label>
+        <label>Last Update</label>
         <type>text</type>
     </field>
     <field>
         <id>segment.status</id>
-        <label>status</label>
+        <label>Status</label>
         <type>text</type>
     </field>
 </form>
