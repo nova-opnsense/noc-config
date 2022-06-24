@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# /usr/local/etc/rc.syshook.d/start/97-mqttclient
+
 echo -n "Starting MQTT Client: "
 
 configctl nocconfig startclient
