@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo -n "Starting MQTT Broker: "
+
+configctl nocconfig startbroker

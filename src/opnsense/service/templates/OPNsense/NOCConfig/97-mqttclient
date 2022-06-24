@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo -n "Starting MQTT Client: "
+
+configctl nocconfig startclient
