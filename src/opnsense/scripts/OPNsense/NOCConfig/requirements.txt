@@ -1,0 +1,4 @@
+paho_mqtt==1.6.1
+pyrsistent==0.15.5
+requests==2.22.0
+urllib3==1.25.8

@@ -103,9 +103,40 @@ api.py \
         }'
 ```
 
+## python develop environment
+
+Check python version
+
+```sh
+python3 --version
+```
+
+Build/Install pip
+
+```sh
+cd /usr/ports/devel/py-pip
+make install clean
+
+# checking
+pip --version
+```
+
+Generates requirements
+
+```sh
+pip install pipreqs
+pipreqs --force src/opnsense/scripts/OPNsense/NOCConfig
+```
+
+Install dependencies from requirements.txt
+
+```sh
+pip install -r src/opnsense/scripts/OPNsense/NOCConfig/requirements.txt
+```
+
 ---
 
-# About
+## About
 
 hai.nt <hai.nt@novaintechs.com>
 

@@ -1,6 +1,6 @@
 #!/usr/local/bin/python3
 
-'''
+"""
     Copyright (c) 2021-2022 Nova Intelligent Technology JSC.,
     Author: hai.nt <hai.nt@novaintechs.com>
     
@@ -9,43 +9,57 @@
     --------------------------------------------------------------------------------------
 
     opnsense api helper
-'''
+"""
 
 import json
 import requests
 import argparse
+import urllib3
 from utils import readConfig
 
-conf = readConfig('/usr/local/etc/nocconfig/api.conf', 'api')
+urllib3.disable_warnings()
 
-api_key = conf.get('key')
-api_secret = conf.get('secret')
-api_endpoint = conf.get('endpoint')
+
+def getApiConf():
+    try:
+        conf = readConfig("/usr/local/etc/nocconfig/api.conf", "api")
+
+        api_key = conf.get("key")
+        api_secret = conf.get("secret")
+        api_endpoint = conf.get("endpoint")
+
+        return (api_key, api_secret, api_endpoint)
+    except Exception:
+        return ("", "", "")
 
 
 def get(api):
+    (api_key, api_secret, api_endpoint) = getApiConf()
 
-    url = f'{api_endpoint}/{api}'
+    url = f"{api_endpoint}/{api}"
 
     r = requests.get(url,
                      verify=False,
                      auth=(api_key, api_secret))
 
-    print(f'result: {r}')
+    print(f"result: {r}")
 
     if r.status_code == 200:
-        print('Receive status OK')
-        response = json.loads(r.text)
-        print(f'response: {json.dumps(response)}')
+        print("Receive status OK")
     else:
-        print('Connection / Authentication issue, response received:')
-        print(r.text)
+        print("Connection / Authentication issue, response received:")
+
+    print(f"Response: {json.dumps(json.loads(r.text))}")
+
+    r.close()
+    return r
 
 
 def post(api, data, contentType):
+    (api_key, api_secret, api_endpoint) = getApiConf()
 
-    url = f'{api_endpoint}/{api}'
-    headers = {'content-type': contentType}
+    url = f"{api_endpoint}/{api}"
+    headers = {"content-type": contentType}
 
     r = requests.post(url,
                       verify=False,
@@ -54,33 +68,35 @@ def post(api, data, contentType):
                       auth=(api_key, api_secret))
 
     if r.status_code == 200:
-        print('Receive status OK')
-        response = json.loads(r.text)
-        print(f'response: {json.dumps(response)}')
+        print("Receive status OK")
     else:
-        print('Connection / Authentication issue, response received:')
-        print(r.text)
+        print("Connection / Authentication issue, response received:")
+
+    print(f"Response: {json.dumps(json.loads(r.text))}")
+
+    r.close()
+    return r
 
 
 def main():
 
-    parser = argparse.ArgumentParser(description='OPNsense API client helper')
+    parser = argparse.ArgumentParser(description="OPNsense API client helper")
 
-    parser.add_argument('-m', '--method',
+    parser.add_argument("-m", "--method",
                         type=str,
-                        default='GET',
-                        help='method `GET`/`POST`, default is `GET`')
-    parser.add_argument('-a', '--api',
+                        default="GET",
+                        help="method `GET`/`POST`, default is `GET`")
+    parser.add_argument("-a", "--api",
                         type=str,
                         required=True,
-                        help='API url. for example: `nocconfig/ezmesh/get`')
-    parser.add_argument('-d', '--data',
+                        help="API url. for example: `nocconfig/ezmesh/get`")
+    parser.add_argument("-d", "--data",
                         type=str,
-                        help='data')
-    parser.add_argument('-t', '--contentType',
+                        help="data")
+    parser.add_argument("-t", "--contentType",
                         type=str,
-                        default='application/json',
-                        help='header content-type: application/json, application/x-www-form-urlencoded, text/plain, text/html')
+                        default="application/json",
+                        help="header content-type: application/json, application/x-www-form-urlencoded, text/plain, text/html")
 
     args = parser.parse_args()
 
@@ -89,13 +105,13 @@ def main():
     data = args.data
     contentType = args.contentType
 
-    if method == 'GET':
+    if method == "GET":
         get(api)
-    elif method == 'POST':
+    elif method == "POST":
         post(api, data, contentType)
     else:
         parser.print_help()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

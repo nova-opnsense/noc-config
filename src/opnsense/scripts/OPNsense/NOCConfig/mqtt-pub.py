@@ -1,6 +1,6 @@
 #!/usr/local/bin/python3
 
-'''
+"""
     Copyright (c) 2021-2022 Nova Intelligent Technology JSC.,
     Author: hai.nt <hai.nt@novaintechs.com>
 
@@ -9,7 +9,7 @@
     --------------------------------------------------------------------------------------
 
     perform some tests for the nocconfig application
-'''
+"""
 
 import argparse
 import time
@@ -19,16 +19,16 @@ from mqtt import MQTT, clientid
 def main():
 
     parser = argparse.ArgumentParser(
-        description='NOC mqtt client publish helper')
+        description="NOC mqtt client publish helper")
 
-    parser.add_argument('-t', '--topic',
+    parser.add_argument("-t", "--topic",
                         type=str,
                         required=True,
-                        help='topic name')
-    parser.add_argument('-p', '--payload',
+                        help="topic name")
+    parser.add_argument("-p", "--payload",
                         type=str,
                         required=True,
-                        help='payload data')
+                        help="payload data")
 
     args = parser.parse_args()
 
@@ -45,10 +45,10 @@ def main():
         try:
             time.sleep(1)
         except KeyboardInterrupt:
-            print(f'KeyboardInterrupt')
+            print(f"KeyboardInterrupt")
             break
         except Exception as e:
-            print(f'Exception: {e}')
+            print(f"Exception: {e}")
             break
 
     rc = mqttc.publish(topic, payload)
@@ -57,5 +57,5 @@ def main():
     mqttc.stop()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

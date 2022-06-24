@@ -1,6 +1,6 @@
 #!/usr/local/bin/python3
 
-'''
+"""
     Copyright (c) 2021-2022 Nova Intelligent Technology JSC.,
     Author: hai.nt <hai.nt@novaintechs.com>
     
@@ -9,7 +9,8 @@
     --------------------------------------------------------------------------------------
 
     utility functions helper
-'''
+    
+"""
 
 import random
 import string
@@ -18,11 +19,11 @@ from configparser import ConfigParser
 
 
 def str2bool(str):
-    return str.lower() in ['true', '1', 't', 'y', 'yes']
+    return str.lower() in ["true", "1", "t", "y", "yes"]
 
 
 def randId(n: int):
-    return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(n))
+    return "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(n))
 
 
 def readConfig(config_file, section):
