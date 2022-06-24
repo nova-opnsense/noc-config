@@ -1,6 +1,3 @@
 ezmesh.conf:/usr/local/etc/nocconfig/ezmesh.conf
 mqtt.conf:/usr/local/etc/nocconfig/mqtt.conf
 api.conf:/usr/local/etc/nocconfig/api.conf
-
-96-mqttbroker:/usr/local/etc/rc.syshook.d/start/96-mqttbroker
-97-mqttclient:/usr/local/etc/rc.syshook.d/start/97-mqttclient
