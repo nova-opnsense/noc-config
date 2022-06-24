@@ -9,6 +9,7 @@
     --------------------------------------------------------------------------------------
 
     perform some tests for the nocconfig application
+    
 """
 
 import argparse

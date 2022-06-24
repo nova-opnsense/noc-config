@@ -13,7 +13,6 @@
 """
 
 import paho.mqtt.client as mqtt
-from pyrsistent import s
 from utils import str2bool, randId, readConfig
 
 

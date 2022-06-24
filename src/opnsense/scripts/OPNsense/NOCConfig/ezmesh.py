@@ -9,10 +9,11 @@
     --------------------------------------------------------------------------------------
 
     perform some tests for the nocconfig application
+    
 """
 
 import json
-from utils import readConfig
+from utils import readConfig, log
 
 
 def getEzmeshConf():
@@ -36,4 +37,8 @@ def main():
 
 
 if __name__ == "__main__":
+    log.warn("warning warning")
+    log.error("error error")
+    log.info("info info")
+    log.debug("debug debug")
     main()
