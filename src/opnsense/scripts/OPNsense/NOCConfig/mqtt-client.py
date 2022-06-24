@@ -19,6 +19,8 @@ from api import get, post
 from datetime import datetime
 from utils import log, tryParseJson
 
+mqtt = MQTT(clientid)
+
 
 def on_message_hub_status(mqttc, obj, msg):
     """
@@ -85,17 +87,29 @@ def on_message_hub_status(mqttc, obj, msg):
         log.error("[MQTT] Exception: %s", e)
 
 
-def main():
-    mqttc = MQTT(clientid)
-    mqttc.message_callback_add("hub/status/#", on_message_hub_status)
+def on_message_ping(mqttc, obj, msg):
+    log.debug("[MQTT] %s (%d): \n%s",
+              msg.topic, msg.qos,
+              tryParseJson(msg.payload))
 
-    mqttc.bootstrap()
-    mqttc.subscribe([
-        # ("test/#", 0),
+    try:
+        rc = mqtt.publish("pong", "")
+        log.debug("[MQTT] Publish  (%s)", rc)
+    except Exception as e:
+        log.error("[MQTT] Exception: %s", e)
+
+
+def main():
+    mqtt.message_callback_add("hub/status/#", on_message_hub_status)
+    mqtt.message_callback_add("ping", on_message_ping)
+
+    mqtt.bootstrap()
+    mqtt.subscribe([
+        ("ping", 0),
         ("hub/status/#", 0)
     ])
 
-    mqttc.start()
+    mqtt.start()
 
     while True:
         try:
@@ -107,7 +121,7 @@ def main():
             log.error("[MQTT] Exception: %s", e)
             break
 
-    mqttc.stop()
+    mqtt.stop()
 
 
 if __name__ == "__main__":
