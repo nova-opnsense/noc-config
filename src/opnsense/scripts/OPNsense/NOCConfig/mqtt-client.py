@@ -17,6 +17,7 @@ import time
 from mqtt import MQTT, clientid
 from api import get, post
 from datetime import datetime
+from utils import log, tryParseJson
 
 
 def on_message_hub_status(mqttc, obj, msg):
@@ -38,7 +39,11 @@ def on_message_hub_status(mqttc, obj, msg):
         }
     }
     """
-    print(f"[on_message_hub_status] {msg.topic} ({msg.qos}): {msg.payload}")
+
+    log.debug("[MQTT] %s (%d): \n%s",
+              msg.topic, msg.qos,
+              tryParseJson(msg.payload))
+
     try:
         hub = json.loads(msg.payload)
         segmentData = {
@@ -51,14 +56,13 @@ def on_message_hub_status(mqttc, obj, msg):
             }
         }
 
-        # search for exist item
+        # search for existing item
         res = post("nocconfig/segment/searchItem",
                    "current=1&rowCount=1&searchPhrase=%s" % hub["id"],
                    "application/x-www-form-urlencoded")
 
         if res.status_code != 200:
-            print(
-                "Error: unable to search item. status_code: %d" % res.status_code)
+            log.error(f"[MQTT] unable to search item. status_code: {res}")
             return
 
         result = json.loads(res.text)
@@ -66,19 +70,19 @@ def on_message_hub_status(mqttc, obj, msg):
         if result["total"] > 0 and len(result["rows"]) > 0:
             # update exist item
             uuid = result["rows"][0]["uuid"]
-            print("===> update exist item %s" % uuid)
+            log.debug(f"[MQTT] update exist item {uuid}")
             res = post("nocconfig/segment/setItem/%s" % uuid,
                        json.dumps(segmentData),
                        "application/json")
         else:
             # add new item
-            print("===> add new item")
+            log.debug("[MQTT] add new item")
             res = post("nocconfig/segment/addItem",
                        json.dumps(segmentData),
                        "application/json")
 
     except Exception as e:
-        print(f"[on_message_hub_status] error: {e}")
+        log.error("[MQTT] Exception: %s", e)
 
 
 def main():
@@ -97,10 +101,10 @@ def main():
         try:
             time.sleep(1)
         except KeyboardInterrupt:
-            print(f"KeyboardInterrupt")
+            log.debug("[MQTT] Ctrl-C")
             break
         except Exception as e:
-            print(f"Exception: {e}")
+            log.error("[MQTT] Exception: %s", e)
             break
 
     mqttc.stop()

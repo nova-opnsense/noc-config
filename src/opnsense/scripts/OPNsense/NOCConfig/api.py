@@ -12,11 +12,10 @@
     
 """
 
-import json
 import requests
 import argparse
 import urllib3
-from utils import readConfig
+from utils import readConfig, log, tryParseJson
 
 urllib3.disable_warnings()
 
@@ -39,21 +38,19 @@ def get(api):
 
     url = f"{api_endpoint}/{api}"
 
-    r = requests.get(url,
-                     verify=False,
-                     auth=(api_key, api_secret))
+    res = requests.get(url,
+                       verify=False,
+                       auth=(api_key, api_secret))
 
-    print(f"result: {r}")
-
-    if r.status_code == 200:
-        print("Receive status OK")
+    if res.status_code == 200:
+        log.debug("[API] Receive status OK")
     else:
-        print("Connection / Authentication issue, response received:")
+        log.warn("[API] Connection / Authentication issue, response received:")
 
-    print(f"Response: {json.dumps(json.loads(r.text))}")
+    log.debug(f"[API] Response: {tryParseJson(res.text)}")
 
-    r.close()
-    return r
+    res.close()
+    return res
 
 
 def post(api, data, contentType):
@@ -62,21 +59,21 @@ def post(api, data, contentType):
     url = f"{api_endpoint}/{api}"
     headers = {"content-type": contentType}
 
-    r = requests.post(url,
-                      verify=False,
-                      data=data,
-                      headers=headers,
-                      auth=(api_key, api_secret))
+    res = requests.post(url,
+                        verify=False,
+                        data=data,
+                        headers=headers,
+                        auth=(api_key, api_secret))
 
-    if r.status_code == 200:
-        print("Receive status OK")
+    if res.status_code == 200:
+        log.debug("[API] Receive status OK")
     else:
-        print("Connection / Authentication issue, response received:")
+        log.debug("[API] Connection / Authentication issue, response received:")
 
-    print(f"Response: {json.dumps(json.loads(r.text))}")
+    log.debug(f"[API] Response: {tryParseJson(res.text)}")
 
-    r.close()
-    return r
+    res.close()
+    return res
 
 
 def main():

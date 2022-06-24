@@ -13,7 +13,7 @@
 """
 
 import json
-from utils import readConfig, log
+from utils import readConfig
 
 
 def getEzmeshConf():
@@ -37,8 +37,4 @@ def main():
 
 
 if __name__ == "__main__":
-    log.warn("warning warning")
-    log.error("error error")
-    log.info("info info")
-    log.debug("debug debug")
     main()

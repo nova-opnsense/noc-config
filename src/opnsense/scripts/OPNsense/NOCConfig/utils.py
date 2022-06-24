@@ -15,6 +15,7 @@
 import os
 import random
 import string
+import json
 from configparser import ConfigParser
 import logging
 import coloredlogs
@@ -53,3 +54,10 @@ def readConfig(config_file, section):
     else:
         # no config
         return None
+
+
+def tryParseJson(str):
+    try:  # json
+        return json.dumps(json.loads(str), indent=4)
+    except:  # text
+        return str

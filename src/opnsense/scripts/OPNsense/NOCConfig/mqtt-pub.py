@@ -15,6 +15,7 @@
 import argparse
 import time
 from mqtt import MQTT, clientid
+from utils import log
 
 
 def main():
@@ -46,10 +47,10 @@ def main():
         try:
             time.sleep(1)
         except KeyboardInterrupt:
-            print(f"KeyboardInterrupt")
+            log.debug("[MQTT] Ctrl-C")
             break
         except Exception as e:
-            print(f"Exception: {e}")
+            log.error("[MQTT] Exception: %s", e)
             break
 
     rc = mqttc.publish(topic, payload)
