@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# /usr/local/etc/rc.syshook.d/start/99-init
+
+echo -n "Init NOC"
+
+configctl nocconfig init
