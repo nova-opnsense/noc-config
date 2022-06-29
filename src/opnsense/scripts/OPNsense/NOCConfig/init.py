@@ -20,27 +20,23 @@ from utils import readConfig
 def copyFiles():
     try:
         dir = "/usr/local/opnsense/service/templates/OPNsense/NOCConfig/"
-        file_logo = os.path.join(dir, "default-logo.svg")
-        file_favicon = os.path.join(dir, "favicon.png")
-        file_default = os.path.join(dir, "default.volt")
+        src_logo = os.path.join(dir, "default-logo.svg")
+        src_favicon = os.path.join(dir, "favicon.png")
+        src_default = os.path.join(dir, "default.volt")
+
+        dst_logo = "/usr/local/opnsense/www/themes/opnsense/build/images/default-logo.svg"
+        dst_favicon = "/usr/local/opnsense/www/themes/opnsense/build/images/favicon.png"
+        dst_default = "/usr/local/opnsense/mvc/app/views/layouts/default.volt"
 
         result = {}
         result["pwd"] = os.getcwd()
 
-        if os.path.exists(file_logo):
-            result[file_logo] = "file_logo already exists. "
-        else:
-            result[file_logo] = "file_logo not found. "
-
-        if os.path.exists(file_favicon):
-            result[file_favicon] = "file_favicon already exists. "
-        else:
-            result[file_favicon] = "file_favicon not found. "
-
-        if os.path.exists(file_default):
-            result[file_default] = "file_default already exists. "
-        else:
-            result[file_default] = "file_default not found. "
+        result[src_logo] = os.path.exists(src_logo)
+        result[dst_logo] = os.path.exists(dst_logo)
+        result[src_favicon] = os.path.exists(src_favicon)
+        result[dst_favicon] = os.path.exists(dst_favicon)
+        result[src_default] = os.path.exists(src_default)
+        result[dst_default] = os.path.exists(dst_default)
 
         result["message"] = "Ok! 💖. "
         return result
