@@ -21,10 +21,12 @@ def copyFiles():
     try:
         dir = "/usr/local/opnsense/service/templates/OPNsense/NOCConfig/"
         src_logo = os.path.join(dir, "default-logo.svg")
+        src_icon = os.path.join(dir, "icon-logo.svg")
         src_favicon = os.path.join(dir, "favicon.png")
         src_default = os.path.join(dir, "default.volt")
 
         dst_logo = "/usr/local/opnsense/www/themes/opnsense/build/images/default-logo.svg"
+        dst_icon = "/usr/local/opnsense/www/themes/opnsense/build/images/icon-logo.svg"
         dst_favicon = "/usr/local/opnsense/www/themes/opnsense/build/images/favicon.png"
         dst_default = "/usr/local/opnsense/mvc/app/views/layouts/default.volt"
 
@@ -33,12 +35,15 @@ def copyFiles():
 
         result[src_logo] = os.path.exists(src_logo)
         result[dst_logo] = os.path.exists(dst_logo)
+        result[src_icon] = os.path.exists(src_icon)
+        result[dst_icon] = os.path.exists(dst_icon)
         result[src_favicon] = os.path.exists(src_favicon)
         result[dst_favicon] = os.path.exists(dst_favicon)
         result[src_default] = os.path.exists(src_default)
         result[dst_default] = os.path.exists(dst_default)
 
         result["copy_logo"] = shutil.copyfile(src_logo, dst_logo)
+        result["copy_icon"] = shutil.copyfile(src_icon, dst_icon)
         result["copy_favicon"] = shutil.copyfile(src_favicon, dst_favicon)
         result["copy_default"] = shutil.copyfile(src_default, dst_default)
 
