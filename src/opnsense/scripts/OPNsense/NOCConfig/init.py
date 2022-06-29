@@ -3,18 +3,18 @@
 """
     Copyright (c) 2021-2022 Nova Intelligent Technology JSC.,
     Author: hai.nt <hai.nt@novaintechs.com>
-    
+
     All rights reserved.
 
     --------------------------------------------------------------------------------------
 
     perform some tests for the nocconfig application
-    
+
 """
 
 import json
 import os
-from utils import readConfig
+import shutil
 
 
 def copyFiles():
@@ -37,6 +37,10 @@ def copyFiles():
         result[dst_favicon] = os.path.exists(dst_favicon)
         result[src_default] = os.path.exists(src_default)
         result[dst_default] = os.path.exists(dst_default)
+
+        result["copy_logo"] = shutil.copyfile(src_logo, dst_logo)
+        result["copy_favicon"] = shutil.copyfile(src_favicon, dst_favicon)
+        result["copy_default"] = shutil.copyfile(src_default, dst_default)
 
         result["message"] = "Ok! 💖. "
         return result
