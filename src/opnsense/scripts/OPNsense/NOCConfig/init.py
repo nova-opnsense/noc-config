@@ -24,17 +24,26 @@ def copyFiles():
         file_favicon = os.path.join(dir, "favicon.png")
         file_default = os.path.join(dir, "default.volt")
 
-        msg = ""
-        if os.path.exists(file_logo):
-            msg += "file_logo already exists. "
-        if os.path.exists(file_favicon):
-            msg += "file_favicon already exists. "
-        if os.path.exists(file_default):
-            msg += "file_default already exists. "
+        result = {}
+        result["pwd"] = os.getcwd()
 
-        return {
-            "message": "Ok! 💖. " + msg,
-        }
+        if os.path.exists(file_logo):
+            result[file_logo] = "file_logo already exists. "
+        else:
+            result[file_logo] = "file_logo not found. "
+
+        if os.path.exists(file_favicon):
+            result[file_favicon] = "file_favicon already exists. "
+        else:
+            result[file_favicon] = "file_favicon not found. "
+
+        if os.path.exists(file_default):
+            result[file_default] = "file_default already exists. "
+        else:
+            result[file_default] = "file_default not found. "
+
+        result["message"] = "Ok! 💖. "
+        return result
     except Exception as e:
         return {
             "message": e,
@@ -42,7 +51,7 @@ def copyFiles():
 
 
 def main():
-    print(json.dumps(copyFiles()))
+    print(json.dumps(copyFiles(), indent=4))
 
 
 if __name__ == "__main__":
