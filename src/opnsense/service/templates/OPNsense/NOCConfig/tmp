@@ -1,2 +1,3 @@
 default.volt:/usr/local/opnsense/mvc/app/views/layouts/default.volt
 default-logo.svg:/usr/local/opnsense/www/themes/opnsense/build/images/default-logo.svg
+favicon.png:/usr/local/opnsense/www/themes/opnsense/build/images/favicon.png

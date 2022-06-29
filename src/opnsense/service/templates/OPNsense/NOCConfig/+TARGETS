@@ -1,4 +1,4 @@
 ezmesh.conf:/usr/local/etc/nocconfig/ezmesh.conf
 mqtt.conf:/usr/local/etc/nocconfig/mqtt.conf
 api.conf:/usr/local/etc/nocconfig/api.conf
-favicon.png:/usr/local/opnsense/www/themes/opnsense/build/images/favicon.png
+default.volt:/usr/local/opnsense/mvc/app/views/layouts/default.volt
