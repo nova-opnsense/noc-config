@@ -19,7 +19,7 @@ from utils import readConfig
 
 def copyFiles():
     try:
-        dir = "../../../service/templates/OPNsense/NOCConfig/"
+        dir = "/usr/local/opnsense/service/templates/OPNsense/NOCConfig/"
         file_logo = os.path.join(dir, "default-logo.svg")
         file_favicon = os.path.join(dir, "favicon.png")
         file_default = os.path.join(dir, "default.volt")
