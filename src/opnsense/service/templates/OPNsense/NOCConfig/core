@@ -1,0 +1,16 @@
+{
+    "product_abi": "22.1",
+    "product_arch": "amd64",
+    "product_copyright_owner": "Nova Intelligent Technology JSC.,",
+    "product_copyright_url": "https://novaintechs.com/",
+    "product_copyright_years": "2021-2022",
+    "product_email": "info@novaintechs.com",
+    "product_flavour": "OpenSSL",
+    "product_hash": "a8aabc538",
+    "product_id": "opnsense",
+    "product_name": "NOC",
+    "product_nickname": "NovaIntechs",
+    "product_series": "22.1",
+    "product_version": "22.1.8_1",
+    "product_website": "https://novaintechs.com/"
+}

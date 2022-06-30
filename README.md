@@ -32,6 +32,28 @@ using `upgrade` for reinstalling
 make upgrade clean
 ```
 
+### running
+
+restart config daemon
+
+```sh
+service configd restart
+```
+
+run command
+
+```sh
+configctl nocconfig init
+
+configctl nocconfig ezmesh
+
+configctl nocconfig startbroker
+configctl nocconfig stopbroker
+
+configctl nocconfig startclient
+configctl nocconfig stopclient
+```
+
 ### testing
 
 Test ezmesh config
