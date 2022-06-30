@@ -18,30 +18,10 @@ import shutil
 
 
 def modInfo():
-    # /usr/local/opnsense/version/core
-    '''
-    {
-        "product_abi": "22.1",
-        "product_arch": "amd64",
-        "product_copyright_owner": "Deciso B.V.",
-        "product_copyright_url": "https://www.deciso.com/",
-        "product_copyright_years": "2014-2022",
-        "product_email": "project@opnsense.org",
-        "product_flavour": "OpenSSL",
-        "product_hash": "a8aabc538",
-        "product_id": "opnsense",
-        "product_name": "OPNsense",
-        "product_nickname": "Observant Owl",
-        "product_series": "22.1",
-        "product_version": "22.1.8_1",
-        "product_website": "https://opnsense.org/"
-    }
-    '''
-
     try:
         result = {}
 
-        # core
+        # /usr/local/opnsense/version/core
         core_path = "/usr/local/opnsense/version/core"
         core_exists = os.path.exists(core_path)
         core_mod = {
@@ -55,6 +35,7 @@ def modInfo():
             "product_copyright_url": "https://novaintechs.com/",
             "product_copyright_years": "2021-2022",
         }
+
         result["core"] = {}
         result["core"]["path"] = core_path
         result["core"]["exist"] = core_exists
