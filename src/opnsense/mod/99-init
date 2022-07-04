@@ -2,6 +2,6 @@
 
 # /usr/local/etc/rc.syshook.d/start/99-init
 
-echo -n "Init NOC: "
+echo -n "Initializing NOC: "
 
 configctl nocconfig init
