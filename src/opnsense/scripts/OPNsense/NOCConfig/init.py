@@ -42,16 +42,18 @@ def modInfo():
         result["core"]["exist"] = core_exists
 
         if core_exists:
-            with open(core_path) as f:
-                data = json.load(f)
-                for k in core_mod.keys():
-                    if k in data:
-                        data[k] = core_mod[k]
-                        result["core"][k] = core_mod[k]
+            fr = open(core_path, "r")
+            data = json.load(fr)
+            for k in core_mod.keys():
+                if k in data:
+                    data[k] = core_mod[k]
+                    result["core"][k] = core_mod[k]
+            fr.close()
 
-        new_data = json.dumps(data, indent=4)
-        with open(core_path, "w") as f:
-            f.write(new_data)
+            new_data = json.dumps(data, indent=4)
+            fw = open(core_path, "w")
+            fw.write(new_data)
+            fw.close()
 
         result["message"] = "modInfo() ok! 💖"
 
@@ -122,12 +124,11 @@ def copyFiles():
 
 
 def main():
-    print("Starting initialization...")
-    log.debug("[INIT] copyFiles()")
-    log.debug(tryParseJson(copyFiles()))
-    log.debug("[INIT] modInfo()")
-    log.debug(tryParseJson(modInfo()))
-    print("Done!")
+    print("")
+    print("copyFiles()")
+    log.debug(f'[INIT] {tryParseJson(copyFiles())}')
+    print("[INIT] modInfo()")
+    log.debug(f'[INIT] {tryParseJson(modInfo())}')
 
 
 if __name__ == "__main__":

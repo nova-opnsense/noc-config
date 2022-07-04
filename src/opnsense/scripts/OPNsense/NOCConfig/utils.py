@@ -56,8 +56,11 @@ def readConfig(config_file, section):
         return None
 
 
-def tryParseJson(str):
+def tryParseJson(obj):
     try:  # json
-        return json.dumps(json.loads(str), indent=4)
+        if isinstance(obj, str):
+            return json.dumps(json.loads(obj), indent=4)
+        else:
+            return json.dumps(obj, indent=4)
     except:  # text
-        return str
+        return obj
