@@ -17,18 +17,18 @@ import random
 import string
 import json
 from configparser import ConfigParser
-import logging as log
+import logging
 import coloredlogs
 
-# log = logging.getLogger()
+log = logging.getLogger()
 
-log.basicConfig(
-    format="%(asctime)s %(levelname)-8s %(message)s",
-    level=log.DEBUG,
-    datefmt="%Y-%m-%d %H:%M:%S")
+# log.basicConfig(
+#     format="%(asctime)s %(levelname)-8s %(message)s",
+#     level=log.DEBUG,
+#     datefmt="%Y-%m-%d %H:%M:%S")
 
-# coloredlogs.install(level="DEBUG", logger=log,
-#                     fmt="%(asctime)s.%(msecs)03d %(hostname)s %(name)s[%(process)d] %(levelname)7s %(message)s")
+coloredlogs.install(level="DEBUG", logger=log,
+                    fmt="%(asctime)s.%(msecs)03d %(hostname)s %(name)s[%(process)d] %(levelname)7s %(message)s")
 
 
 def str2bool(str):
