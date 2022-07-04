@@ -127,7 +127,7 @@ def main():
     print("")
     print("copyFiles()")
     log.debug(f'[INIT] {tryParseJson(copyFiles())}')
-    print("[INIT] modInfo()")
+    print("modInfo()")
     log.debug(f'[INIT] {tryParseJson(modInfo())}')
 
 
