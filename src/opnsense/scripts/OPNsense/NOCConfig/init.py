@@ -124,10 +124,9 @@ def copyFiles():
 
 
 def main():
-    print("\n")
-    print("copyFiles()")
+    log.debug("copyFiles()")
     log.debug(f'[INIT] {tryParseJson(copyFiles())}')
-    print("modInfo()")
+    log.debug("modInfo()")
     log.debug(f'[INIT] {tryParseJson(modInfo())}')
 
 
