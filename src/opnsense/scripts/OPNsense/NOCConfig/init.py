@@ -122,10 +122,12 @@ def copyFiles():
 
 
 def main():
+    print("Starting initialization...")
     log.debug("[INIT] copyFiles()")
     log.debug(tryParseJson(copyFiles()))
     log.debug("[INIT] modInfo()")
     log.debug(tryParseJson(modInfo()))
+    print("Done!")
 
 
 if __name__ == "__main__":
