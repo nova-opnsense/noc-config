@@ -22,6 +22,18 @@ from utils import log, tryParseJson
 mqtt = MQTT(clientid)
 
 
+def on_message_ping(mqttc, obj, msg):
+    log.debug("[MQTT] %s (%d): \n%s",
+              msg.topic, msg.qos,
+              tryParseJson(msg.payload))
+
+    try:
+        rc = mqtt.publish("pong", "")
+        log.debug("[MQTT] Publish  (%s)", rc)
+    except Exception as e:
+        log.error("[MQTT] Exception: %s", e)
+
+
 def on_message_hub_status(mqttc, obj, msg):
     """
     /* payload example */
@@ -45,6 +57,8 @@ def on_message_hub_status(mqttc, obj, msg):
     log.debug("[MQTT] %s (%d): \n%s",
               msg.topic, msg.qos,
               tryParseJson(msg.payload))
+
+    result = json.loads(msg.payload)
 
     try:
         hub = json.loads(msg.payload)
@@ -87,26 +101,36 @@ def on_message_hub_status(mqttc, obj, msg):
         log.error("[MQTT] Exception: %s", e)
 
 
-def on_message_ping(mqttc, obj, msg):
+def on_message_hub_event(mqttc, obj, msg):
+    """
+    {
+        "name":"hub.hub.wireless.info.requested",
+        "source":"hub"
+    }
+    """
+
     log.debug("[MQTT] %s (%d): \n%s",
               msg.topic, msg.qos,
               tryParseJson(msg.payload))
 
     try:
-        rc = mqtt.publish("pong", "")
-        log.debug("[MQTT] Publish  (%s)", rc)
+        msg.topic.split("/")
+        hub = json.loads(msg.payload)
+
     except Exception as e:
         log.error("[MQTT] Exception: %s", e)
 
 
 def main():
-    mqtt.message_callback_add("hub/status/#", on_message_hub_status)
     mqtt.message_callback_add("ping", on_message_ping)
+    mqtt.message_callback_add("hub/status/#", on_message_hub_status)
+    mqtt.message_callback_add("hub/event/#", on_message_hub_event)
 
     mqtt.bootstrap()
     mqtt.subscribe([
         ("ping", 0),
-        ("hub/status/#", 0)
+        ("hub/status/#", 0),
+        ("hub/event/#", 0)
     ])
 
     mqtt.start()

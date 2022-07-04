@@ -15,6 +15,7 @@
 import json
 import os
 import shutil
+from utils import log, tryParseJson
 
 
 def modInfo():
@@ -81,7 +82,6 @@ def copyFiles():
                 "dest": "/usr/local/opnsense/www/themes/opnsense/build/images/"
             }
         ]
-        
         '''
 
         _list = json.loads(_json)
@@ -122,11 +122,10 @@ def copyFiles():
 
 
 def main():
-    print(">>> copyFiles()")
-    print(json.dumps(copyFiles(), indent=4))
-    print()
-    print(">>> modInfo()")
-    print(json.dumps(modInfo(), indent=4))
+    log.debug("[INIT] copyFiles()")
+    log.debug(tryParseJson(copyFiles()))
+    log.debug("[INIT] modInfo()")
+    log.debug(tryParseJson(modInfo()))
 
 
 if __name__ == "__main__":
