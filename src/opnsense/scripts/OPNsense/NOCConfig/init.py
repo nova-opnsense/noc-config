@@ -124,10 +124,10 @@ def copyFiles():
 
 
 def main():
-    log.debug("copyFiles()")
-    log.debug(f'[INIT] {tryParseJson(copyFiles())}')
-    log.debug("modInfo()")
-    log.debug(f'[INIT] {tryParseJson(modInfo())}')
+    log.debug("[INIT] copyFiles()")
+    log.debug(tryParseJson(copyFiles()))
+    log.debug("[INIT] modInfo()")
+    log.debug(tryParseJson(modInfo()))
 
 
 if __name__ == "__main__":

@@ -13,14 +13,45 @@
 """
 
 import os
+import sys
 import random
 import string
 import json
 from configparser import ConfigParser
 import logging
+from logging import handlers
 import coloredlogs
+import platform
 
-log = logging.getLogger()
+
+LOGFILE = "/var/log/noc.log"
+FORMAT = "%(asctime)s.%(msecs)03d %(hostname)s %(name)s[%(process)d] %(levelname)7s %(message)s"
+
+
+class HostnameFilter(logging.Filter):
+    hostname = platform.node()
+
+    def filter(self, record):
+        record.hostname = HostnameFilter.hostname
+        return True
+
+
+log = logging.getLogger("")
+log.setLevel(logging.DEBUG)
+format = logging.Formatter(
+    fmt=FORMAT,
+    datefmt="%Y-%m-%d %H:%M:%S")
+
+
+ch = logging.StreamHandler(sys.stdout)
+ch.addFilter(HostnameFilter())
+ch.setFormatter(format)
+log.addHandler(ch)
+
+fh = handlers.RotatingFileHandler(LOGFILE, maxBytes=(1048576*5), backupCount=7)
+fh.addFilter(HostnameFilter())
+fh.setFormatter(format)
+log.addHandler(fh)
 
 # log.basicConfig(
 #     format="%(asctime)s %(levelname)-8s %(message)s",
@@ -28,7 +59,7 @@ log = logging.getLogger()
 #     datefmt="%Y-%m-%d %H:%M:%S")
 
 coloredlogs.install(level="DEBUG", logger=log,
-                    fmt="%(asctime)s.%(msecs)03d %(hostname)s %(name)s[%(process)d] %(levelname)7s %(message)s")
+                    fmt=FORMAT)
 
 
 def str2bool(str):
