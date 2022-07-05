@@ -18,14 +18,51 @@ import shutil
 from utils import log, tryParseJson
 
 
+def modMenu():
+    try:
+        result = {}
+        name = "menu"
+
+        # /usr/local/opnsense/mvc/app/models/OPNsense/Core/Menu/Menu.xml
+        path = "/usr/local/opnsense/mvc/app/models/OPNsense/Core/Menu/Menu.xml"
+        exists = os.path.exists(path)
+
+        result[name] = {}
+        result[name]["path"] = path
+        result[name]["exist"] = exists
+
+        if exists:
+            fr = open(path, "r")
+            lines = fr.readlines()
+            fr.close()
+
+            for i, line in enumerate(lines):
+                if "License" in line:
+                    lines[i] = ""
+
+            fw = open(path, "w")
+            fw.writelines(lines)
+            fw.close()
+
+        result["message"] = "modMenu() ok! 💖"
+
+        return result
+
+    except Exception as e:
+        return {
+            "message": e,
+        }
+
+
 def modInfo():
     try:
         result = {}
+        name = "core"
 
         # /usr/local/opnsense/version/core
-        core_path = "/usr/local/opnsense/version/core"
-        core_exists = os.path.exists(core_path)
-        core_mod = {
+        path = "/usr/local/opnsense/version/core"
+        exists = os.path.exists(path)
+        mod = {
             "product_name": "NOC",
             "product_nickname": "NovaIntechs",
             "product_email": "info@novaintechs.com",
@@ -37,21 +74,21 @@ def modInfo():
             "product_copyright_years": "2021-2022",
         }
 
-        result["core"] = {}
-        result["core"]["path"] = core_path
-        result["core"]["exist"] = core_exists
+        result[name] = {}
+        result[name]["path"] = path
+        result[name]["exist"] = exists
 
-        if core_exists:
-            fr = open(core_path, "r")
+        if exists:
+            fr = open(path, "r")
             data = json.load(fr)
-            for k in core_mod.keys():
+            for k in mod.keys():
                 if k in data:
-                    data[k] = core_mod[k]
-                    result["core"][k] = core_mod[k]
+                    data[k] = mod[k]
+                    result[name][k] = mod[k]
             fr.close()
 
             new_data = json.dumps(data, indent=4)
-            fw = open(core_path, "w")
+            fw = open(path, "w")
             fw.write(new_data)
             fw.close()
 
@@ -128,6 +165,8 @@ def main():
     log.debug(tryParseJson(copyFiles()))
     log.debug("[INIT] modInfo()")
     log.debug(tryParseJson(modInfo()))
+    log.debug("[INIT] modMenu()")
+    log.debug(tryParseJson(modMenu()))
 
 
 if __name__ == "__main__":

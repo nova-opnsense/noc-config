@@ -7,3 +7,6 @@
 /usr/local/etc/rc.syshook.d/start/96-mqttbroker
 /usr/local/etc/rc.syshook.d/start/97-mqttclient
 /usr/local/etc/rc.syshook.d/start/99-init
+
+/usr/local/opnsense/service/templates/OPNsense/Auth/motd
+/usr/local/opnsense/mvc/app/models/OPNsense/Core/Menu/Menu.xml
