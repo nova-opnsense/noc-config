@@ -37,7 +37,7 @@ def modMenu():
             fr.close()
 
             for i, line in enumerate(lines):
-                if "License" in line:
+                if "License" in line or "Help" in line or "Documentation" in line or "Forum" in line or "Support" in line:
                     lines[i] = ""
 
             fw = open(path, "w")
