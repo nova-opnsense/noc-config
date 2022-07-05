@@ -15,7 +15,7 @@
 import json
 import os
 import shutil
-from utils import log, tryParseJson
+from utils import log, tryParseJson, fmtNova
 
 
 def modMenu():
@@ -120,7 +120,7 @@ def modBanner():
             lines.clear()
 
             fw = open(path, "w")
-            fw.writelines(lines)
+            fw.write(fmtNova())
             fw.close()
 
         result["message"] = "modBanner() ok! 💖"

@@ -13,6 +13,7 @@
 """
 
 import os
+import re
 import sys
 import random
 import string
@@ -91,3 +92,16 @@ def tryParseJson(obj):
             return json.dumps(obj, indent=4)
     except:  # text
         return obj
+
+
+def fmtNova():
+    return '''
+
+    ███╗░░██╗░█████╗░██╗░░░██╗░█████╗░
+    ████╗░██║██╔══██╗██║░░░██║██╔══██╗
+    ██╔██╗██║██║░░██║╚██╗░██╔╝███████║
+    ██║╚████║██║░░██║░╚████╔╝░██╔══██║
+    ██║░╚███║╚█████╔╝░░╚██╔╝░░██║░░██║
+    ╚═╝░░╚══╝░╚════╝░░░░╚═╝░░░╚═╝░░╚═╝
+
+    '''
