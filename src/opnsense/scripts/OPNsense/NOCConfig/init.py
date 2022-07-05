@@ -23,7 +23,6 @@ def modMenu():
         result = {}
         name = "menu"
 
-        # /usr/local/opnsense/mvc/app/models/OPNsense/Core/Menu/Menu.xml
         path = "/usr/local/opnsense/mvc/app/models/OPNsense/Core/Menu/Menu.xml"
         exists = os.path.exists(path)
 
@@ -59,7 +58,6 @@ def modInfo():
         result = {}
         name = "core"
 
-        # /usr/local/opnsense/version/core
         path = "/usr/local/opnsense/version/core"
         exists = os.path.exists(path)
         mod = {
@@ -93,6 +91,39 @@ def modInfo():
             fw.close()
 
         result["message"] = "modInfo() ok! 💖"
+
+        return result
+
+    except Exception as e:
+        return {
+            "message": e,
+        }
+
+
+def modBanner():
+    try:
+        result = {}
+        name = "banner"
+
+        path = "/usr/local/opnsense/service/templates/OPNsense/Auth/motd"
+        exists = os.path.exists(path)
+
+        result[name] = {}
+        result[name]["path"] = path
+        result[name]["exist"] = exists
+
+        if exists:
+            fr = open(path, "r")
+            lines = fr.readlines()
+            fr.close()
+
+            lines.clear()
+
+            fw = open(path, "w")
+            fw.writelines(lines)
+            fw.close()
+
+        result["message"] = "modBanner() ok! 💖"
 
         return result
 
@@ -167,6 +198,8 @@ def main():
     log.debug(tryParseJson(modInfo()))
     log.debug("[INIT] modMenu()")
     log.debug(tryParseJson(modMenu()))
+    log.debug("[INIT] modBanner()")
+    log.debug(tryParseJson(modBanner()))
 
 
 if __name__ == "__main__":
