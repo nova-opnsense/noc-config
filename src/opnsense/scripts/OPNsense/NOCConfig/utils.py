@@ -20,7 +20,6 @@ import json
 from configparser import ConfigParser
 import logging
 from logging import handlers
-import coloredlogs
 import platform
 
 
@@ -57,9 +56,6 @@ log.addHandler(fh)
 #     format="%(asctime)s %(levelname)-8s %(message)s",
 #     level=log.DEBUG,
 #     datefmt="%Y-%m-%d %H:%M:%S")
-
-coloredlogs.install(level="DEBUG", logger=log,
-                    fmt=FORMAT)
 
 
 def str2bool(str):
