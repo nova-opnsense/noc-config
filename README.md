@@ -32,6 +32,12 @@ using `upgrade` for reinstalling
 make upgrade clean
 ```
 
+build the package `/work/pkg/os-noc-config-demo-1.0_1.txz`
+
+```sh
+make package clean
+```
+
 ### running
 
 restart config daemon
