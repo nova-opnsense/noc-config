@@ -4,6 +4,8 @@ ssh-keygen
 eval `ssh-agent -c`
 ssh-add ~/.ssh/id_rsa
 
+cat ~/.ssh/id_rsa.pub
+
 ```
 
 ~/.ssh/config
