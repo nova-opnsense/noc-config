@@ -8,7 +8,7 @@ cat ~/.ssh/id_rsa.pub
 
 ```
 
-~/.ssh/config
+nano ~/.ssh/config
 
 ```
 Host *
