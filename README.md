@@ -16,9 +16,9 @@ opnsense-code plugins
 
 ```sh
 cd /usr/plugins/devel
-git clone https://github.com/nova-opnsense/noc-config-demo.git
+git clone https://thanhhai135@bitbucket.org/novaintechs/noc-demo.git
 
-cd noc-config-demo
+cd noc-demo
 git checkout develop
 ```
 
@@ -27,21 +27,21 @@ git checkout develop
 install
 
 ```sh
-# root@nova:/usr/plugins/devel/noc-config-demo #
+# root@nova:/usr/plugins/devel/noc-demo #
 make install clean
 ```
 
 using `upgrade` for reinstalling
 
 ```sh
-# root@nova:/usr/plugins/devel/noc-config-demo #
+# root@nova:/usr/plugins/devel/noc-demo #
 make upgrade clean
 ```
 
-build the package `/usr/plugins/devel/noc-config-demo/work/pkg/os-noc-config-demo-1.0_1.txz`
+build the package `/usr/plugins/devel/noc-demo/work/pkg/os-noc-demo-1.0_1.txz`
 
 ```sh
-# root@nova:/usr/plugins/devel/noc-config-demo #
+# root@nova:/usr/plugins/devel/noc-demo #
 make package
 ls work/pkg/
 ```
