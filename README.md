@@ -67,8 +67,8 @@ configctl noc init
 
 configctl noc ezmesh
 
-configctl noc startbroker
-configctl noc stopbroker
+configctl noc startmosquitto
+configctl noc stopmosquitto
 
 configctl noc startclient
 configctl noc stopclient

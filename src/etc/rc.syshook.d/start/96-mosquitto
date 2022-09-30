@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# /usr/local/etc/rc.syshook.d/start/96-mosquitto
+
+echo -n "[NOC] Starting start mosquitto message broker: "
+
+configctl noc startmosquitto

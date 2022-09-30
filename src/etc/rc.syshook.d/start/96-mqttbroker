@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# /usr/local/etc/rc.syshook.d/start/96-mqttbroker
-
-echo -n "[NOC] Starting MQTT Broker: "
-
-configctl noc startbroker

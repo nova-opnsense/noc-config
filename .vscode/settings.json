@@ -19,9 +19,9 @@
         "pipreqs",
         "rowtoggle",
         "SSID",
-        "startbroker",
+        "startmosquitto",
         "startclient",
-        "stopbroker",
+        "stopmosquitto",
         "stopclient",
         "userdata"
     ]
