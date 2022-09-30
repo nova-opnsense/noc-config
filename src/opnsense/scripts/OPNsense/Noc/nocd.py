@@ -121,16 +121,58 @@ def on_message_hub_event(mqttc, obj, msg):
         log.error("[MQTT] Exception: %s", e)
 
 
+def on_message_hub_ping(mqttc, obj, msg):
+    """
+    {
+
+    }
+    """
+
+    log.debug("[MQTT] %s (%d): \n%s",
+              msg.topic, msg.qos,
+              tryParseJson(msg.payload))
+
+    try:
+        msg.topic.split("/")
+        hub = json.loads(msg.payload)
+
+    except Exception as e:
+        log.error("[MQTT] Exception: %s", e)
+
+
+def on_message_noc_ping(mqttc, obj, msg):
+    """
+    {
+
+    }
+    """
+
+    log.debug("[MQTT] %s (%d): \n%s",
+              msg.topic, msg.qos,
+              tryParseJson(msg.payload))
+
+    try:
+        msg.topic.split("/")
+        hub = json.loads(msg.payload)
+
+    except Exception as e:
+        log.error("[MQTT] Exception: %s", e)
+
+
 def main():
     mqtt.message_callback_add("ping", on_message_ping)
     mqtt.message_callback_add("hub/status/#", on_message_hub_status)
     mqtt.message_callback_add("hub/event/#", on_message_hub_event)
+    mqtt.message_callback_add("nit/noc/ping", on_message_noc_ping)
+    mqtt.message_callback_add("nit/hub/ping", on_message_hub_ping)
 
     mqtt.bootstrap()
     mqtt.subscribe([
         ("ping", 0),
         ("hub/status/#", 0),
-        ("hub/event/#", 0)
+        ("hub/event/#", 0),
+        ("nit/noc/ping", 0),
+        ("nit/hub/ping", 0)
     ])
 
     mqtt.start()
