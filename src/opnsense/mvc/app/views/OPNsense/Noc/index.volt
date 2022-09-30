@@ -10,6 +10,6 @@
  #}
 
 <div  class="col-md-12">
-    Welcome to NOC!
+    Welcome to NIT OneNET Controller (NOC)!
 </div>
 
