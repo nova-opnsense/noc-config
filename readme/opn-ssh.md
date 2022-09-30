@@ -18,3 +18,9 @@ Host *
   IdentityFile ~/.ssh/id_rsa
 
 ```
+
+```
+git config --global user.name "hai.nt"
+git config --global user.email hai.nt@novaintechs.com
+
+```
