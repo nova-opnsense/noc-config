@@ -4,4 +4,4 @@
 
 echo -n "[NOC] Initializing: "
 
-configctl nocconfig init
+configctl noc init

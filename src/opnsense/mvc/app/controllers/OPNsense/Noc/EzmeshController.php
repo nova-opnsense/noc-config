@@ -11,18 +11,18 @@
  *   
  */
 
-namespace OPNsense\NOCConfig;
+namespace OPNsense\Noc;
 
 /**
  * Class EzmeshController
- * @package OPNsense\NOCConfig
+ * @package OPNsense\Noc
  */
 class EzmeshController extends \OPNsense\Base\IndexController
 {
     public function indexAction()
     {
         // pick the template to serve to our users.
-        $this->view->pick('OPNsense/NOCConfig/ezmesh');
+        $this->view->pick('OPNsense/Noc/ezmesh');
         // fetch form data "ezmesh" in
         $this->view->ezmeshForm = $this->getForm("ezmesh");
     }

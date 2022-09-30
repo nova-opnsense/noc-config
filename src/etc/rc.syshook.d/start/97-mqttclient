@@ -4,4 +4,4 @@
 
 echo -n "[NOC] Starting MQTT Client: "
 
-configctl nocconfig startclient
+configctl noc startclient

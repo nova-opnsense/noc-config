@@ -12,7 +12,7 @@
 
 <script>
     $( document ).ready(function() {
-        var data_get_map = {'frm_ezmesh':"/api/nocconfig/ezmesh/get"};
+        var data_get_map = {'frm_ezmesh':"/api/noc/ezmesh/get"};
         console.log("data_get_map: ");
         console.log(data_get_map);
 
@@ -24,16 +24,16 @@
 
         // link save button to API set action
         $("#saveAct").click(function(){
-            saveFormToEndpoint(url="/api/nocconfig/ezmesh/set",formid='frm_ezmesh',callback_ok=function(){
+            saveFormToEndpoint(url="/api/noc/ezmesh/set",formid='frm_ezmesh',callback_ok=function(){
                 // action to run after successful save, for example reconfigure service.
-                ajaxCall(url="/api/nocconfig/service/reload", sendData={},callback=function(data,status) {
+                ajaxCall(url="/api/noc/service/reload", sendData={},callback=function(data,status) {
                     // action to run after reload
                 });
             });
         });
 
         $("#applyAct").click(function(){
-            ajaxCall(url="/api/nocconfig/service/apply", sendData={},callback=function(data,status) {
+            ajaxCall(url="/api/noc/service/apply", sendData={},callback=function(data,status) {
                 // action to run after reload
                 $("#responseMsg").removeClass("hidden");
                 $("#responseMsg").html(data['message']);

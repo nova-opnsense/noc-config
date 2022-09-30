@@ -1,0 +1,7 @@
+<menu>
+    <Noc order="11" VisibleName="NOC" cssClass="fa fa-cubes">
+        <Status order="0" url="/ui/noc" cssClass="fa fa-comment-o"/>
+        <Ezmesh order="10" url="/ui/noc/ezmesh" cssClass="fa fa-asterisk"/>
+        <Segment order="20" url="/ui/noc/segment" cssClass="fa fa-database"/>
+    </Noc>
+</menu>

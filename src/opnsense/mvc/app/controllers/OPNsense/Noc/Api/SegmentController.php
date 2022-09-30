@@ -11,18 +11,18 @@
  *   
  */
 
-namespace OPNsense\NOCConfig\Api;
+namespace OPNsense\Noc\Api;
 
 use OPNsense\Base\ApiMutableModelControllerBase;
 
 /**
- * a settings controller for our NOCConfig app, uses our ApiMutableModelControllerBase type
- * @package OPNsense\NOCConfig
+ * a settings controller for our Noc app, uses our ApiMutableModelControllerBase type
+ * @package OPNsense\Noc
  */
 class SegmentController extends ApiMutableModelControllerBase
 {
     protected static $internalModelName = 'segment';
-    protected static $internalModelClass = 'OPNsense\NOCConfig\Segment';
+    protected static $internalModelClass = 'OPNsense\Noc\Segment';
 
     public function searchItemAction()
     {

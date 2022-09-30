@@ -1,0 +1,9 @@
+<acl>
+    <page-user-noc>
+        <name>NOC</name>
+        <patterns>
+            <pattern>ui/noc/*</pattern>
+            <pattern>api/noc/*</pattern>
+        </patterns>
+    </page-user-noc>
+</acl>

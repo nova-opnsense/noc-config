@@ -11,15 +11,15 @@
  *   
  */
 
-namespace OPNsense\NOCConfig\Api;
+namespace OPNsense\Noc\Api;
 
 use OPNsense\Base\ApiControllerBase;
-use OPNsense\NOCConfig\Ezmesh;
+use OPNsense\Noc\Ezmesh;
 use OPNsense\Core\Config;
 
 /**
- * Class EzmeshController Handles Ezmesh related API actions for the NOCConfig module
- * @package OPNsense\NOCConfig
+ * Class EzmeshController Handles Ezmesh related API actions for the Noc module
+ * @package OPNsense\Noc
  */
 class EzmeshController extends ApiControllerBase
 {
@@ -35,7 +35,7 @@ class EzmeshController extends ApiControllerBase
         $result = array();
         if ($this->request->isGet()) {
             $mdlEzmesh = new Ezmesh();
-            $result['nocconfig'] = $mdlEzmesh->getNodes();
+            $result['noc'] = $mdlEzmesh->getNodes();
         }
         return $result;
     }
@@ -52,7 +52,7 @@ class EzmeshController extends ApiControllerBase
         if ($this->request->isPost()) {
             // load model and update with provided data
             $mdlEzmesh = new Ezmesh();
-            $mdlEzmesh->setNodes($this->request->getPost("nocconfig"));
+            $mdlEzmesh->setNodes($this->request->getPost("noc"));
 
             // perform validation
             $valMsgs = $mdlEzmesh->performValidation();
@@ -60,7 +60,7 @@ class EzmeshController extends ApiControllerBase
                 if (!array_key_exists("validations", $result)) {
                     $result["validations"] = array();
                 }
-                $result["validations"]["nocconfig." . $msg->getField()] = $msg->getMessage();
+                $result["validations"]["noc." . $msg->getField()] = $msg->getMessage();
             }
 
             // serialize model to config and save
@@ -68,7 +68,7 @@ class EzmeshController extends ApiControllerBase
                 $mdlEzmesh->serializeToConfig();
                 Config::getInstance()->save();
                 $result["result"] = "saved!!!";
-                $result["data"] = $this->request->getPost("nocconfig");
+                $result["data"] = $this->request->getPost("noc");
             }
         }
         return $result;

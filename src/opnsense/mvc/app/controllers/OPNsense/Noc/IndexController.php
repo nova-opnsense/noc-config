@@ -11,17 +11,17 @@
  *   
  */
 
-namespace OPNsense\NOCConfig;
+namespace OPNsense\Noc;
 
 /**
  * Class IndexController
- * @package OPNsense\NOCConfig
+ * @package OPNsense\Noc
  */
 class IndexController extends \OPNsense\Base\IndexController
 {
     public function indexAction()
     {
         // pick the template to serve to our users.
-        $this->view->pick('OPNsense/NOCConfig/index');
+        $this->view->pick('OPNsense/Noc/index');
     }
 }

@@ -8,7 +8,7 @@
 
     --------------------------------------------------------------------------------------
 
-    perform some tests for the nocconfig application
+    perform some tests for the noc application
     
 """
 
@@ -73,7 +73,7 @@ def on_message_hub_status(mqttc, obj, msg):
         }
 
         # search for existing item
-        res = post("nocconfig/segment/searchItem",
+        res = post("noc/segment/searchItem",
                    "current=1&rowCount=1&searchPhrase=%s" % hub["id"],
                    "application/x-www-form-urlencoded")
 
@@ -87,13 +87,13 @@ def on_message_hub_status(mqttc, obj, msg):
             # update exist item
             uuid = result["rows"][0]["uuid"]
             log.debug(f"[MQTT] update exist item {uuid}")
-            res = post("nocconfig/segment/setItem/%s" % uuid,
+            res = post("noc/segment/setItem/%s" % uuid,
                        json.dumps(segmentData),
                        "application/json")
         else:
             # add new item
             log.debug("[MQTT] add new item")
-            res = post("nocconfig/segment/addItem",
+            res = post("noc/segment/addItem",
                        json.dumps(segmentData),
                        "application/json")
 

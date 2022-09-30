@@ -8,7 +8,7 @@
 
     --------------------------------------------------------------------------------------
 
-    perform some tests for the nocconfig application
+    perform some tests for the noc application
     
 """
 
@@ -18,7 +18,7 @@ from utils import readConfig
 
 def getEzmeshConf():
     try:
-        ezmConf = readConfig("/usr/local/etc/nocconfig/ezmesh.conf", "ezmesh")
+        ezmConf = readConfig("/usr/local/etc/noc/ezmesh.conf", "ezmesh")
         ezm_ssid = ezmConf.get("ssid")
         ezm_pass = ezmConf.get("password")
         return {

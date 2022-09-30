@@ -22,7 +22,7 @@ urllib3.disable_warnings()
 
 def getApiConf():
     try:
-        conf = readConfig("/usr/local/etc/nocconfig/api.conf", "api")
+        conf = readConfig("/usr/local/etc/noc/api.conf", "api")
 
         api_key = conf.get("key")
         api_secret = conf.get("secret")
@@ -87,7 +87,7 @@ def main():
     parser.add_argument("-a", "--api",
                         type=str,
                         required=True,
-                        help="API url. for example: `nocconfig/ezmesh/get`")
+                        help="API url. for example: `noc/ezmesh/get`")
     parser.add_argument("-d", "--data",
                         type=str,
                         help="data")

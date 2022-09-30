@@ -11,17 +11,17 @@
  *   
  */
 
-namespace OPNsense\NOCConfig;
+namespace OPNsense\Noc;
 
 /**
  * Class IndexController
- * @package OPNsense\NOCConfig
+ * @package OPNsense\Noc
  */
 class SegmentController extends \OPNsense\Base\IndexController
 {
     public function indexAction()
     {
-        $this->view->pick('OPNsense/NOCConfig/segment');
+        $this->view->pick('OPNsense/Noc/segment');
         $this->view->formSegment = $this->getForm("segment");
     }
 }

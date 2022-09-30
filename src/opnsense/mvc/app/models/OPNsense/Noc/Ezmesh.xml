@@ -1,5 +1,5 @@
 <model>
-    <mount>//OPNsense/nocconfig/ezmesh</mount>
+    <mount>//OPNsense/noc/ezmesh</mount>
     <description>
         Ezmesh configuration
     </description>

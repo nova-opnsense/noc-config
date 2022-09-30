@@ -8,7 +8,7 @@
 
     --------------------------------------------------------------------------------------
 
-    perform some tests for the nocconfig application
+    perform some tests for the noc application
     
 """
 
@@ -16,7 +16,7 @@ import paho.mqtt.client as mqtt
 from utils import str2bool, randId, readConfig, log
 
 
-mqttConf = readConfig("/usr/local/etc/nocconfig/mqtt.conf", "mqtt")
+mqttConf = readConfig("/usr/local/etc/noc/mqtt.conf", "mqtt")
 mqtt_host = mqttConf.get("host")
 mqtt_port = int(mqttConf.get("port"))
 mqtt_username = mqttConf.get("username")

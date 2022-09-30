@@ -4,4 +4,4 @@
 
 echo -n "[NOC] Starting MQTT Broker: "
 
-configctl nocconfig startbroker
+configctl noc startbroker

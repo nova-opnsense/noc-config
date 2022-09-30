@@ -11,7 +11,7 @@
  *   
  */
 
-namespace OPNsense\NOCConfig\Api;
+namespace OPNsense\Noc\Api;
 
 use OPNsense\Base\ApiControllerBase;
 use OPNsense\Core\Backend;
@@ -30,7 +30,7 @@ class ServiceController extends ApiControllerBase
         $status = "failed";
         if ($this->request->isPost()) {
             $backend = new Backend();
-            $bckresult = trim($backend->configdRun('template reload OPNsense/NOCConfig'));
+            $bckresult = trim($backend->configdRun('template reload OPNsense/Noc'));
             if ($bckresult == "OK") {
                 $status = "ok";
             }
@@ -45,7 +45,7 @@ class ServiceController extends ApiControllerBase
     {
         if ($this->request->isPost()) {
             $backend = new Backend();
-            $bckresult = json_decode(trim($backend->configdRun("nocconfig ezmesh")), true);
+            $bckresult = json_decode(trim($backend->configdRun("noc ezmesh")), true);
             if ($bckresult !== null) {
                 // only return valid json type responses
                 return $bckresult;

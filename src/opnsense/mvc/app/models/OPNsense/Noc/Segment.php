@@ -12,7 +12,7 @@
  */
 
 
-namespace OPNsense\NOCConfig;
+namespace OPNsense\Noc;
 
 use OPNsense\Base\BaseModel;
 

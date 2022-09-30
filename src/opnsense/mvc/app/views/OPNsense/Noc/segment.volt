@@ -13,12 +13,12 @@
 
     $( document ).ready(function() {
         $("#grid-segment").UIBootgrid(
-            {   search:'/api/nocconfig/segment/searchItem/',
-                get:'/api/nocconfig/segment/getItem/',
-                set:'/api/nocconfig/segment/setItem/',
-                add:'/api/nocconfig/segment/addItem/',
-                del:'/api/nocconfig/segment/delItem/',
-                toggle:'/api/nocconfig/segment/toggleItem/'
+            {   search:'/api/noc/segment/searchItem/',
+                get:'/api/noc/segment/getItem/',
+                set:'/api/noc/segment/setItem/',
+                add:'/api/noc/segment/addItem/',
+                del:'/api/noc/segment/delItem/',
+                toggle:'/api/noc/segment/toggleItem/'
             }
         );
     });

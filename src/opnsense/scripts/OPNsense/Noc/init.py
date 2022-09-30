@@ -8,7 +8,7 @@
 
     --------------------------------------------------------------------------------------
 
-    perform some tests for the nocconfig application
+    perform some tests for the noc application
 
 """
 
@@ -135,7 +135,7 @@ def modBanner():
 
 def copyFiles():
     try:
-        src_dir = "/usr/local/opnsense/service/templates/OPNsense/NOCConfig/"
+        src_dir = "/usr/local/opnsense/service/templates/OPNsense/Noc/"
 
         _json = '''
         [
