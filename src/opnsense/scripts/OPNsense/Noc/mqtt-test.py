@@ -17,24 +17,24 @@ from mqtt import MQTT, clientid
 from utils import log
 
 
-def on_message_topic1(mqttc, obj, msg):
+def on_message_topic_ping(mqttc, obj, msg):
     log.debug("[MQTT] %s (%d): \n%s",
               msg.topic, msg.qos, msg.payload)
 
 
-def on_message_topic2(mqttc, obj, msg):
+def on_message_topic_pong(mqttc, obj, msg):
     log.debug("[MQTT] %s (%d): \n%s",
               msg.topic, msg.qos, msg.payload)
 
 
 def main():
     mqttc = MQTT(clientid)
-    mqttc.message_callback_add("test/topic1", on_message_topic1)
-    mqttc.message_callback_add("test/topic2", on_message_topic2)
+    mqttc.message_callback_add("nit/from-hub/ping", on_message_topic_ping)
+    mqttc.message_callback_add("nit/from-hub/pong", on_message_topic_pong)
 
     mqttc.bootstrap()
-    mqttc.subscribe([("test/topic1", 0),
-                    ("test/topic2", 0)])
+    mqttc.subscribe([("nit/from-hub/ping", 0),
+                     ("nit/from-hub/pong", 0)])
 
     mqttc.start()
 
